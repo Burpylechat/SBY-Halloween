@@ -1,0 +1,59 @@
+import os
+import json
+import bot_package.data as data
+from difflib import SequenceMatcher
+import aiofiles
+import time
+import random
+import discord
+from discord.ext import commands
+from discord.ext.commands import Context
+from discord import app_commands
+
+
+if os.name == "nt":  # Only execute on Windows
+    def fix_encoding(obj):
+        #the func that encode well everything; bcs we are french, we use é, à, è
+            if isinstance(obj, dict):
+                return {fix_encoding(k): fix_encoding(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [fix_encoding(item) for item in obj]
+            elif isinstance(obj, str):
+                try:
+                    return obj.encode('latin-1').decode('utf-8')
+                except UnicodeEncodeError:
+                    return obj
+                except UnicodeDecodeError:
+                    return obj
+            else:
+                return obj
+
+else:
+    def fix_encoding(obj):            
+        return obj
+
+
+#Get inv func
+async def get_inv(id : int):
+    """
+    A func to get the inv of a user (with his id)
+    """
+    if os.path.exists(f"./files/inventory/{str(id)}.json"):
+        async with aiofiles.open(f"./files/inventory/{str(id)}.json") as f:
+            content = await f.read()
+            data = fix_encoding(json.loads(content))
+    else :
+        # Return nothing if there's nothing to :/
+        data = {}
+       
+    return data
+
+
+
+#save inv func
+async def save_inv(data : dict, id : int):
+    """
+    A func to save the inv of a user (with his id)
+    """
+    async with aiofiles.open(f"./files/inventory/{str(id)}.json", "w", encoding="utf-8") as f:
+        await f.write(json.dumps(data, indent=2, ensure_ascii=False))
