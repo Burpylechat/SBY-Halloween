@@ -1,0 +1,5 @@
+configuration.json
+.env
+discord.log
+
+__pycache__/

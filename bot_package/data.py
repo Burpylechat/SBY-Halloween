@@ -37,3 +37,11 @@ def save_json(file_path: str, data: dict, ):
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
+default_inventory = {
+    "energie" : 100,
+    "last_reset" : 0,
+    "yokai" : {},
+    "object" : {},
+    "coin" : {},
+    "room" : "main"
+}

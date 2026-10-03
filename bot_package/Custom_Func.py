@@ -57,3 +57,16 @@ async def save_inv(data : dict, id : int):
     """
     async with aiofiles.open(f"./files/inventory/{str(id)}.json", "w", encoding="utf-8") as f:
         await f.write(json.dumps(data, indent=2, ensure_ascii=False))
+
+
+async def get_midnight():
+    """
+    A function that return the time at midnight
+    """
+    # Get current time and convert to midnight timestamp
+    current_time = time.time()
+    current_day = time.localtime(current_time)
+    midnight = time.mktime((current_day.tm_year, current_day.tm_mon, 
+                            current_day.tm_mday, 0, 0, 0, 0, 0, 0))
+    midnight -= 3600
+    return midnight
