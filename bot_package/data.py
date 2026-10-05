@@ -38,10 +38,14 @@ def save_json(file_path: str, data: dict, ):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 default_inventory = {
+    "started" : True,
     "energie" : 100,
     "last_reset" : 0,
+    "points" : 0,
     "yokai" : {},
     "object" : {},
     "coin" : {},
     "room" : "main"
 }
+
+pieces = ["Salon", "Cuisine", "Chambre", "Salle de bain", "Bibliothèque", "Galerie", "Grenier"]
