@@ -190,5 +190,8 @@
                 "proba" : 16
             }
         }
+    },
+    "Cuisine" : {
+        "Comptoir" : null
     }
 }

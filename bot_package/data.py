@@ -49,6 +49,11 @@ default_inventory = {
 }
 
 pieces = ["Salon", "Cuisine", "Chambre", "Salle de bain", "Bibliothèque", "Galerie", "Grenier"]
+piece_property = open_json("./files/piece_property.json")
+objets = []
+for room in piece_property:
+    for objet in piece_property[room]:
+        objets.append(objet)
 configuration = open_json("./files/bot-data.json")
 images_piece = configuration["Images"]
     

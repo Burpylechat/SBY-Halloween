@@ -7,11 +7,20 @@ import bot_package.data as data
 
 async def piece_autcomplete(interaction : discord.Interaction, current : str) -> list[app_commands.Choice[str]] :
     choices = data.pieces.copy()
-    list = [
+    liste = [
         app_commands.Choice(name=choices, value=choices)
         for choices in choices if current.lower() in choices.lower()
     ]
-    return list
+    return liste
+
+async def object_autcomplete(interaction : discord.Interaction, current : str) -> list[app_commands.Choice[str]] :
+    choices = data.objets.copy()
+    inv = await Cf.get_inv(interaction.user.id)
+    liste = []
+    for choice in choices:
+        if choice in data.piece_property[inv["room"]]:
+            liste.append(app_commands.Choice(name=choice, value=choice))
+    return liste
 
 
 
@@ -126,7 +135,32 @@ class Commands(commands.Cog):
             description = "Revenez demain pour être à 100 d'énergie.",
             color = discord.Color.green()
         )
-        return await ctx.send(emebd=energie_embed)
+        return await ctx.send(embed=energie_embed)
+    
+
+    @commands.hybrid_command(name="objet")
+    @app_commands.autocomplete(objet=object_autcomplete)
+    async def objet(self,ctx:commands.Context,objet:str):
+        await Cf.energie_reset(ctx.author.id,ctx)
+        inventory = await Cf.get_inv(ctx.author.id)
+        if inventory["energie"] < 5:
+            no_energie_embed = discord.Embed(
+                title="Vous n'avez plus suffisament d'énergie.",
+                description=f"Vous avez {inventory["energie"]} d'énergie, et il en faut 5.",
+                color=discord.Color.red()
+            )
+            return await ctx.send(embed=no_energie_embed)
+        
+        if objet not in data.piece_property[inventory["room"]]:
+            not_object_in_room_embed = discord.Embed(
+                title="L'objet demandé n'est pas dans cette pièce/il n'existe pas.",
+                description=f"Liste des objets dans le/la{inventory["room"]}:",
+                color=discord.Color.red()
+            )
+            for objett in data.piece_property[inventory["room"]]:
+                not_object_in_room_embed.add_field(name=objett,value="")
+            return await ctx.send(embed=not_object_in_room_embed)
+        return
 
 
 
