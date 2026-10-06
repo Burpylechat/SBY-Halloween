@@ -56,4 +56,5 @@ for room in piece_property:
         objets.append(objet)
 configuration = open_json("./files/bot-data.json")
 images_piece = configuration["Images"]
+room_description = open_json("./files/room_description.json")
     
