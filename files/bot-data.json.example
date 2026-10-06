@@ -1,0 +1,12 @@
+{
+    "Images": {
+        "Manoir" : "https://example.com",
+        "Salon" : "https://example.com",
+        "Cuisine" : "https://example.com",
+        "Chambre" : "https://example.com",
+        "Salle de bain" : "https://example.com",
+        "Bibliothèque" : "https://example.com",
+        "Galerie" : "https://example.com",
+        "Grenier" : "https://example.com"
+    }
+}

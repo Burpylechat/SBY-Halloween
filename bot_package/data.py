@@ -49,3 +49,6 @@ default_inventory = {
 }
 
 pieces = ["Salon", "Cuisine", "Chambre", "Salle de bain", "Bibliothèque", "Galerie", "Grenier"]
+configuration = open_json("./files/bot-data.json")
+images_piece = configuration["Images"]
+    

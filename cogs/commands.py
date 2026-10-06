@@ -45,9 +45,10 @@ class Commands(commands.Cog):
             await Cf.save_inv(inventory, ctx.author.id)
             started_embed = discord.Embed(
                 title = "Vous commencer l'évènement",
-                description = "Vous venez de commencer l'évènement.\nFaites /pièce {pièce} pour changer de pièce.",
+                description = "Vous venez de commencer l'évènement.\nFaites /pièce {pièce} pour changer de pièce.\n\n\n Voici le plan du manoir:",
                 color = discord.Color.green()
             )
+            started_embed.set_image(url=data.images_piece["Manoir"])
             return await ctx.send(embed=started_embed)
         else:
             already_started_embed = discord.Embed(
@@ -61,6 +62,9 @@ class Commands(commands.Cog):
     @commands.hybrid_command(name="pièce")
     @app_commands.autocomplete(piece=piece_autcomplete)
     async def piece(self, ctx:commands.Context, piece:str):
+        """
+        Une commande vous permettant de changer de pièce
+        """
         await Cf.energie_reset(ctx.author.id,ctx)
         
         if piece not in data.pieces:
@@ -105,7 +109,25 @@ class Commands(commands.Cog):
             description=f"Vous êtes désormais dans le/la {piece.lower()}.\nIl vous reste {inventory["energie"]} énergies.",
             color=discord.Color.green()
         )
+        succes_embed.set_image(url=data.images_piece[piece])
         return await ctx.send(embed=succes_embed)
+    
+
+    @commands.hybrid_command(name="energie")
+    async def energie(self, ctx:commands.Context):
+        """
+        Une commande vous permettant de voir votre jauge d'énergie
+        """
+        await Cf.energie_reset(ctx.author.id,ctx)
+        inventory = await Cf.get_inv(ctx.author.id)
+        energi = inventory["energie"]
+        energie_embed = discord.Embed(
+            title = f"Vous avez {energi} d'énergie.",
+            description = "Revenez demain pour être à 100 d'énergie.",
+            color = discord.Color.green()
+        )
+        return await ctx.send(emebd=energie_embed)
+
 
 
 

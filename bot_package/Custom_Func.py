@@ -83,7 +83,7 @@ async def energie_reset(user:int, ctx:commands.context):
         await save_inv(inventory,user)
         energie_reset_embed = discord.Embed(
             title = "Énergie réinitialisé",
-            description = "votre énergie quotidienne à été réinitialisé, elle est désormais à 100.",
+            description = "Votre énergie quotidienne à été réinitialisé, elle est désormais à 100.",
             color=discord.Color.green()
         )
         return await ctx.send(embed=energie_reset_embed)
