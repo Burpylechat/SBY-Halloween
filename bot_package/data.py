@@ -43,7 +43,6 @@ default_inventory = {
     "last_reset" : 0,
     "points" : 0,
     "yokai" : {},
-    "object" : {},
     "coin" : {},
     "room" : "main"
 }
@@ -57,4 +56,7 @@ for room in piece_property:
 configuration = open_json("./files/bot-data.json")
 images_piece = configuration["Images"]
 room_description = open_json("./files/room_description.json")
+
+coin_list = ["Pièce rouge", "Pièce orange", "Pièce jaune", "Pièce verte", "Pièce bleue ciel", "Pièce bleue", "Pièce mauve", "Pièce rose", "Pièce démoniaque"]
+coin_proba = [12,12,12,12,12,12,12,12,4]
     

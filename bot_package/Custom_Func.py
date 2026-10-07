@@ -87,3 +87,12 @@ async def energie_reset(user:int, ctx:commands.context):
             color=discord.Color.green()
         )
         return await ctx.send(embed=energie_reset_embed)
+
+async def give(thing:str,where:str,inventory:dict,number:int=1):
+    try:
+        inventory[where][thing] += number
+        print("A")
+    except KeyError:
+        inventory[where][thing] = number
+        print("B")
+    return inventory

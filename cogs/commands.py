@@ -3,6 +3,7 @@ from discord import app_commands
 from discord.ext import commands
 import bot_package.Custom_Func as Cf
 import bot_package.data as data
+import random
 
 
 async def piece_autcomplete(interaction : discord.Interaction, current : str) -> list[app_commands.Choice[str]] :
@@ -30,6 +31,8 @@ class Commands(commands.Cog):
 
     def __init__(self, bot:commands.Bot):
         self.bot = bot
+
+
 
     @commands.hybrid_command(name="start")
     async def start(self, ctx:commands.Context):
@@ -67,6 +70,7 @@ class Commands(commands.Cog):
                 color = discord.Color.red()
             )
             return await ctx.send(embed=already_started_embed)
+
 
 
     @commands.hybrid_command(name="pièce")
@@ -123,6 +127,7 @@ class Commands(commands.Cog):
         return await ctx.send(embed=succes_embed)
     
 
+
     @commands.hybrid_command(name="energie")
     async def energie(self, ctx:commands.Context):
         """
@@ -137,6 +142,7 @@ class Commands(commands.Cog):
             color = discord.Color.green()
         )
         return await ctx.send(embed=energie_embed)
+
     
 
     @commands.hybrid_command(name="objet")
@@ -164,8 +170,78 @@ class Commands(commands.Cog):
             for objett in data.piece_property[inventory["room"]]:
                 not_object_in_room_embed.add_field(name=objett,value="")
             return await ctx.send(embed=not_object_in_room_embed)
-        return
-        #to-do : random issue when we uses and object.
+
+        inventory["energie"] -= 5
+
+        to_gain = []
+        gain_proba = []
+        for gain in data.piece_property[inventory["room"]][objet]:
+            to_gain.append(gain)
+            gain_proba.append(data.piece_property[inventory["room"]][objet][gain]["proba"])
+
+        gain = random.choices(to_gain,gain_proba)[0]
+        print(gain)
+        gain_property = data.piece_property[inventory["room"]][objet][gain]
+        print(gain_property)
+
+        if gain_property["effect"] == "energie": #fonctionne
+            inventory["energie"] += gain_property["value"]
+            energie_embed = discord.Embed(
+                title = f"Vous avez fouillé le/la {objet.lower()}.",
+                description = gain_property["description"],
+                color = discord.Color.green()
+            )
+            await Cf.save_inv(inventory,ctx.author.id)
+            return await ctx.send(embed=energie_embed)
+        
+        elif gain_property["effect"] == "points": #fonctionne
+            nb_points = random.randint(5,20)
+            inventory["points"] += nb_points
+            points_embed = discord.Embed(
+                title = f"Vous avez fouillé le/la {objet.lower()}.",
+                description = gain_property["description"].format(nb_points),
+                color = discord.Color.green()
+            )
+            await Cf.save_inv(inventory,ctx.author.id)
+            return await ctx.send(embed=points_embed)
+
+        elif gain_property["effect"] == "piece": #fonctionne
+            coin = random.choices(data.coin_list.copy(),data.coin_proba.copy())[0]
+            inventory = await Cf.give(coin,"coin",inventory)
+            coin_embed = discord.Embed(
+                title = f"Vous avez fouillé le/la {objet.lower()}.",
+                description = gain_property["description"].format(coin),
+                color = discord.Color.green()
+            )
+            await Cf.save_inv(inventory,ctx.author.id)
+            return await ctx.send(embed=coin_embed)
+
+        else:
+            print("yokai")
+            yokai = random.choice(data.yokai_room[inventory["room"]])
+            if gain_property["effect"] == "yokai passif":
+                inventory = await Cf.give(yokai,"yokai",inventory)
+                yokai_embed = discord.Embed(
+                    title = f"Vous avez fouillé le/la {objet.lower()}.",
+                    description = gain_property["description"].format(yokai),
+                    color = discord.Color.green()
+                )
+                await Cf.save_inv(inventory,ctx.author.id)
+                return await ctx.send(embed=yokai_embed)
+            else:
+                yokai_embed = discord.Embed(
+                    title = f"Vous avez fouillé le/la {objet.lower()}.",
+                    description = gain_property["description"].format(yokai),
+                    color = discord.Color.yellow()
+                )
+                await Cf.save_inv(inventory,ctx.author.id)
+                """
+                TO-DO : Le fait de pourvoir dépenser de l'énergie pour l'attraper.
+                """
+                return await ctx.send(embed=yokai_embed)
+                
+            
+
 
 
     @commands.hybrid_command(name="points")
@@ -182,6 +258,7 @@ class Commands(commands.Cog):
         )
         return await ctx.send(embed=points_embed)
 
+
     
     @commands.hybrid_command(name="localisation")
     async def localisation(self, ctx:commands.Context):
@@ -197,6 +274,7 @@ class Commands(commands.Cog):
         )
         localisation_embed.set_image(url=data.images_piece[inventory["room"]])
         return await ctx.send(embed=localisation_embed)
+
 
 
     @commands.hybrid_command(name="inventaire")
@@ -228,18 +306,14 @@ class Commands(commands.Cog):
         inv_embed.add_field(name="**Yokai :**", value=field)
 
         field = ""
-        if inv["object"] != {}:
-            for objet in inv["object"]:
-                field += f"{objet} `X{inv["object"][objet]}`\n"
-        inv_embed.add_field(name="**Objets :**", value=field)
-
-        field = ""
         if inv["coin"] != {}:
             for coin in inv["coin"]:
                 field += f"{coin} `X{inv["coin"][coin]}`\n"
         inv_embed.add_field(name="**Pièces :**", value=field)
 
         return await ctx.send(embed=inv_embed)
+
+
 
     
 
