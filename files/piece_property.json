@@ -1,197 +1,578 @@
 {
-    "Salon":{
-        "Canape" : {
-            "+5 énergie" : {
-                "description" : "Vous venez de gagner 5 d'énergie.",
-                "effect" : "energie",
-                "value" : 5,
-                "proba" : 10
-            },
-            "-10 énergie" : {
-                "description" :"Vous venez de perdre 10 d'énergie.",
-                "effect" : "energie",
-                "value" : -10,
-                "proba" : 15
-            },
-            "Entre 5 et 20 points" : {
-                "description" :"Vous venez de gagner {} points.",
-                "effect" : "points",
-                "value" : null,
-                "proba" : 16
-            },
-            "Pièce" : {
-                "description" :"Vous venez de gagner une {}.",
-                "effect" : "piece",
-                "value" : null,
-                "proba" : 22
-            },
-            "Un yokai passif" : {
-                "description" :"Vous venez de vous liez d'amitié avec le yokai {}.",
-                "effect" : "yokai passif",
-                "value" : null,
-                "proba" : 25
-            },
-            "Un yokai aggressif" : {
-                "description" :"Le yokai {} apparue et vous attaque!",
-                "effect" : "yokai agressif",
-                "value" : null,
-                "proba" : 12
-            }
-        },
-        "Fauteuil" : {
-            "+5 énergie" : {
-                "description" : "Vous venez de gagner 5 d'énergie.",
-                "effect" : "energie",
-                "value" : 5,
-                "proba" : 25
-            },
-            "-10 énergie" : {
-                "description" :"Vous venez de perdre 10 d'énergie.",
-                "effect" : "energie",
-                "value" : -10,
-                "proba" : 5
-            },
-            "Entre 5 et 20 points" : {
-                "description" :"Vous venez de gagner {} points.",
-                "effect" : "points",
-                "value" : null,
-                "proba" : 20
-            },
-            "Pièce" : {
-                "description" :"Vous venez de gagner une {}.",
-                "effect" : "piece",
-                "value" : null,
-                "proba" : 10
-            },
-            "Un yokai passif" : {
-                "description" :"Vous venez de vous liez d'amitié avec le yokai {}.",
-                "effect" : "yokai passif",
-                "value" : null,
-                "proba" : 20
-            },
-            "Un yokai aggressif" : {
-                "description" :"Le yokai {} apparue et vous attaque!",
-                "effect" : "yokai agressif",
-                "value" : null,
-                "proba" : 20
-            }
-        },
-        "Cheminée" : {
-            "+5 énergie" : {
-                "description" : "Vous venez de gagner 5 d'énergie.",
-                "effect" : "energie",
-                "value" : 5,
-                "proba" : 12
-            },
-            "-10 énergie" : {
-                "description" :"Vous venez de perdre 10 d'énergie.",
-                "effect" : "energie",
-                "value" : -10,
-                "proba" : 33
-            },
-            "Entre 5 et 20 points" : {
-                "description" :"Vous venez de gagner {} points.",
-                "effect" : "points",
-                "value" : null,
-                "proba" : 20
-            },
-            "Pièce" : {
-                "description" :"Vous venez de gagner une {}.",
-                "effect" : "piece",
-                "value" : null,
-                "proba" : 5
-            },
-            "Un yokai passif" : {
-                "description" :"Vous venez de vous liez d'amitié avec le yokai {}.",
-                "effect" : "yokai passif",
-                "value" : null,
-                "proba" : 10
-            },
-            "Un yokai aggressif" : {
-                "description" :"Le yokai {} apparue et vous attaque!",
-                "effect" : "yokai agressif",
-                "value" : null,
-                "proba" : 20
-            }
-        },
-        "Tapis" : {
-            "+5 énergie" : {
-                "description" : "Vous venez de gagner 5 d'énergie.",
-                "effect" : "energie",
-                "value" : 5,
-                "proba" : 10
-            },
-            "-10 énergie" : {
-                "description" :"Vous venez de perdre 10 d'énergie.",
-                "effect" : "energie",
-                "value" : -10,
-                "proba" : 25
-            },
-            "Entre 5 et 20 points" : {
-                "description" :"Vous venez de gagner {} points.",
-                "effect" : "points",
-                "value" : null,
-                "proba" : 25
-            },
-            "Pièce" : {
-                "description" :"Vous venez de gagner une {}.",
-                "effect" : "piece",
-                "value" : null,
-                "proba" : 10
-            },
-            "Un yokai passif" : {
-                "description" :"Vous venez de vous liez d'amitié avec le yokai {}.",
-                "effect" : "yokai passif",
-                "value" : null,
-                "proba" : 20
-            },
-            "Un yokai aggressif" : {
-                "description" :"Le yokai {} apparue et vous attaque!",
-                "effect" : "yokai agressif",
-                "value" : null,
-                "proba" : 10
-            }
-        },
-        "Tableau" : {
-            "+5 énergie" : {
-                "description" : "Vous venez de gagner 5 d'énergie.",
-                "effect" : "energie",
-                "value" : 5,
-                "proba" : 16
-            },
-            "-10 énergie" : {
-                "description" :"Vous venez de perdre 10 d'énergie.",
-                "effect" : "energie",
-                "value" : -10,
-                "proba" : 16
-            },
-            "Entre 5 et 20 points" : {
-                "description" :"Vous venez de gagner {} points.",
-                "effect" : "points",
-                "value" : null,
-                "proba" : 20
-            },
-            "Pièce" : {
-                "description" :"Vous venez de gagner une {}.",
-                "effect" : "piece",
-                "value" : null,
-                "proba" : 16
-            },
-            "Un yokai passif" : {
-                "description" :"Vous venez de vous liez d'amitié avec le yokai {}.",
-                "effect" : "yokai passif",
-                "value" : null,
-                "proba" : 16
-            },
-            "Un yokai aggressif" : {
-                "description" :"Le yokai {} apparue et vous attaque!",
-                "effect" : "yokai agressif",
-                "value" : null,
-                "proba" : 16
-            }
-        }
+  "Salon": {
+    "Canape": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 10
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 15
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 16
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 22
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 25
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 12
+      }
     },
-    "Cuisine" : {
-        "Comptoir" : null
+    "Fauteuil": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 25
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 5
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 20
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 10
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 20
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 20
+      }
+    },
+    "Cheminée": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 12
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 33
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 20
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 5
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 10
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 20
+      }
+    },
+    "Tapis": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 10
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 25
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 25
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 10
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 20
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 10
+      }
+    },
+    "Tableau": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 16
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 16
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 20
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 16
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 16
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 16
+      }
     }
+  },
+  "Cuisine": {
+    "Comptoir": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 20
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 15
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 20
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 25
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 10
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 10
+      }
+    },
+    "Table": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 20
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 5
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 20
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 12
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 30
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 10
+      }
+    },
+    "Couteau": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 0
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 85
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 0
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 0
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 0
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 15
+      }
+    },
+    "Placard": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 0
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 0
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 30
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 30
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 30
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 10
+      }
+    },
+    "Tabouret": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 30
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 5
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 20
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 5
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 20
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 20
+      }
+    }
+  },
+  "Chambre": {
+    "Lit": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 80
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 0
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 5
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 5
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 5
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 5
+      }
+    },
+    "Chevet": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 5
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 10
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 15
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 50
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 10
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 10
+      }
+    },
+    "Armoire": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 5
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 5
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 10
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 40
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 30
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 10
+      }
+    },
+    "Divan": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 45
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 10
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 5
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 15
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 15
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 10
+      }
+    },
+    "Commode": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 0
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 0
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 40
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 40
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 10
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 10
+      }
+    }
+  }
 }

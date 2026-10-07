@@ -20,7 +20,6 @@ import time
 
 #import form the bot packagex   
 from bot_package import Error_manager
-from bot_package.Queue_manager import Queue
 
 #import discord stuff
 import discord
@@ -115,10 +114,6 @@ class DiscordBot(commands.Bot):
         - bot.logger # In this file
         - self.bot.logger # In cogs
         """
-
-        
-        #queue for the trade command:
-        self.trade_queue = Queue()
         
         """
         item in the trade queue should look like that :
@@ -159,7 +154,7 @@ class DiscordBot(commands.Bot):
         """
         Setup the game status task of the bot.
         """
-        statuses = [f"✨V{VERSION} !", "/bkai", "/help"]
+        statuses = ["/start"]
         if random.choices([True, False], [0.95, 0.05]):
             await self.change_presence(activity=discord.Game(random.choice(statuses)))
         else:
@@ -282,12 +277,6 @@ class DiscordBot(commands.Bot):
         :param context: The context of the normal command that failed executing.
         :param error: The error that has been faced.
         """
-        if context.command.name in ["trade", "cadeau"]:
-            #Prevent recipient / author form being stuck in the queue
-            
-            await bot.trade_queue.delete(context.interaction.id)
-            
-        
         
         if isinstance(error, commands.CommandOnCooldown):
             minutes, seconds = divmod(error.retry_after, 60)

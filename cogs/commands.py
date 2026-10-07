@@ -217,7 +217,6 @@ class Commands(commands.Cog):
             return await ctx.send(embed=coin_embed)
 
         else:
-            print("yokai")
             yokai = random.choice(data.yokai_room[inventory["room"]])
             if gain_property["effect"] == "yokai passif":
                 inventory = await Cf.give(yokai,"yokai",inventory)

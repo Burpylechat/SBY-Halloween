@@ -59,4 +59,6 @@ room_description = open_json("./files/room_description.json")
 
 coin_list = ["Pièce rouge", "Pièce orange", "Pièce jaune", "Pièce verte", "Pièce bleue ciel", "Pièce bleue", "Pièce mauve", "Pièce rose", "Pièce démoniaque"]
 coin_proba = [12,12,12,12,12,12,12,12,4]
+
+yokai_room = open_json("./files/yokai_room.json")
     

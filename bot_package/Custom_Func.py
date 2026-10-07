@@ -91,8 +91,6 @@ async def energie_reset(user:int, ctx:commands.context):
 async def give(thing:str,where:str,inventory:dict,number:int=1):
     try:
         inventory[where][thing] += number
-        print("A")
     except KeyError:
         inventory[where][thing] = number
-        print("B")
     return inventory
