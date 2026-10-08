@@ -94,3 +94,24 @@ async def give(thing:str,where:str,inventory:dict,number:int=1):
     except KeyError:
         inventory[where][thing] = number
     return inventory
+
+async def determinant(word:str):
+    if word[0] in ["a", "e", "i", "o", "u", "y"]:
+        return f"l'{word}"
+    elif word in data.feminin.copy():
+        return f"la {word}"
+    else:
+        return f"le {word}"
+
+async def have_started(ctx):
+    inventory = await get_inv(ctx.author.id)
+    if inventory == {}:
+        not_started_embed = discord.Embed(
+            title = "Vous n'avez pas commencé l'évènement !",
+            description = "Faites /start pour commencer l'évènement.",
+            color = discord.Color.red()
+        )
+        await ctx.send(embed=not_started_embed)
+        return False
+    else:
+        return True

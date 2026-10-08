@@ -91,17 +91,12 @@ class Commands(commands.Cog):
         
         inventory = await Cf.get_inv(ctx.author.id)
 
-        if inventory == {}:
-            started_embed = discord.Embed(
-                title = "Vous n'avez pas commencé l'évènement !",
-                description = "Faites /start pour commencer l'évènement.",
-                color = discord.Color.red()
-            )
-            return await ctx.send(embed=started_embed)
+        if not await Cf.have_started(ctx):
+            return
 
         if piece == inventory["room"]:
             already_in_piece_embed = discord.Embed(
-                title="Vous vous trouvez déjà dans le / la {piece.lower()} !",
+                title=f"Vous vous trouvez déjà dans {await Cf.determinant(piece.lower())}!",
                 description=f"Essayez de fouiller avec /objet.",
                 color=discord.Color.red()
             )
@@ -120,7 +115,7 @@ class Commands(commands.Cog):
         await Cf.save_inv(inventory,ctx.author.id)
         succes_embed = discord.Embed(
             title="Vous avez changé de pièce.",
-            description=f"Vous êtes désormais dans le/la {piece.lower()}.\nIl vous reste {inventory["energie"]} énergies.",
+            description=f"Vous êtes désormais dans {await Cf.determinant(piece.lower())}.\nIl vous reste {inventory["energie"]} énergies.",
             color=discord.Color.green()
         )
         succes_embed.set_image(url=data.images_piece[piece])
@@ -133,6 +128,8 @@ class Commands(commands.Cog):
         """
         Consulter votre taux d'énergie
         """
+        if not await Cf.have_started(ctx):
+            return
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         energi = inventory["energie"]
@@ -151,6 +148,8 @@ class Commands(commands.Cog):
         """
         Vous permet de fouillez un objet.
         """
+        if not await Cf.have_started(ctx):
+            return
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         if inventory["energie"] < 5:
@@ -187,7 +186,7 @@ class Commands(commands.Cog):
         if gain_property["effect"] == "energie": #fonctionne
             inventory["energie"] += gain_property["value"]
             energie_embed = discord.Embed(
-                title = f"Vous avez fouillé le/la {objet.lower()}.",
+                title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
                 description = gain_property["description"],
                 color = discord.Color.green()
             )
@@ -198,7 +197,7 @@ class Commands(commands.Cog):
             nb_points = random.randint(5,20)
             inventory["points"] += nb_points
             points_embed = discord.Embed(
-                title = f"Vous avez fouillé le/la {objet.lower()}.",
+                title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
                 description = gain_property["description"].format(nb_points),
                 color = discord.Color.green()
             )
@@ -209,7 +208,7 @@ class Commands(commands.Cog):
             coin = random.choices(data.coin_list.copy(),data.coin_proba.copy())[0]
             inventory = await Cf.give(coin,"coin",inventory)
             coin_embed = discord.Embed(
-                title = f"Vous avez fouillé le/la {objet.lower()}.",
+                title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
                 description = gain_property["description"].format(coin),
                 color = discord.Color.green()
             )
@@ -221,7 +220,7 @@ class Commands(commands.Cog):
             if gain_property["effect"] == "yokai passif":
                 inventory = await Cf.give(yokai,"yokai",inventory)
                 yokai_embed = discord.Embed(
-                    title = f"Vous avez fouillé le/la {objet.lower()}.",
+                    title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
                     description = gain_property["description"].format(yokai),
                     color = discord.Color.green()
                 )
@@ -229,7 +228,7 @@ class Commands(commands.Cog):
                 return await ctx.send(embed=yokai_embed)
             else:
                 yokai_embed = discord.Embed(
-                    title = f"Vous avez fouillé le/la {objet.lower()}.",
+                    title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
                     description = gain_property["description"].format(yokai),
                     color = discord.Color.yellow()
                 )
@@ -248,6 +247,8 @@ class Commands(commands.Cog):
         """
         Consulter votre nombre de points
         """
+        if not await Cf.have_started(ctx):
+            return
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         points_embed = discord.Embed(
@@ -264,10 +265,12 @@ class Commands(commands.Cog):
         """
         Consulter la pièce dans laquel vous êtes
         """
+        if not await Cf.have_started(ctx):
+            return
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         localisation_embed = discord.Embed(
-            title = f"Vous êtes dans le/la {inventory["room".lower()]}.",
+            title = f"Vous êtes dans {await Cf.determinant(inventory["room"].lower())}.",
             description = "Faites /piece pour changer de pièce!",
             color = discord.Color.green()
         )
@@ -284,7 +287,23 @@ class Commands(commands.Cog):
         if user == None:
             user = ctx.author
 
-        await Cf.energie_reset(user.id,ctx)
+        inv = await Cf.get_inv(user.id)
+        if inv == {}:
+            if user.id == ctx.author.id:
+                not_started_embed = discord.Embed(
+                    title = "Vous n'avez pas commencé l'évènement !",
+                    description = "Faites /start pour commencer l'évènement.",
+                    color = discord.Color.red()
+                )
+                return await ctx.send(embed=not_started_embed)
+            else:
+                not_started_embed = discord.Embed(
+                    title=f"{user.name} n'as pas encore commencé l'évènement!",
+                    color=discord.Color.red()
+                )
+                return await ctx.send(embed=not_started_embed)
+
+        await Cf.energie_reset(ctx.author.id,ctx)
 
         if user.id == ctx.author.id:
             inv_embed = discord.Embed(
@@ -296,7 +315,6 @@ class Commands(commands.Cog):
                 title=f"Inventaire de {user.name}:",
                 color=discord.Color.blurple()
             )
-        inv = await Cf.get_inv(user.id)
 
         field = ""
         if inv["yokai"] != {}:

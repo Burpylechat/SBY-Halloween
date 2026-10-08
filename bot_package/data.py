@@ -61,4 +61,5 @@ coin_list = ["Pièce rouge", "Pièce orange", "Pièce jaune", "Pièce verte", "P
 coin_proba = [12,12,12,12,12,12,12,12,4]
 
 yokai_room = open_json("./files/yokai_room.json")
-    
+
+feminin = ["cuisine", "chambre", "salle de bain", "bibliothèque", "galerie", "cheminée", "table", "armoire", "commode"]    
