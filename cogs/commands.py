@@ -189,7 +189,7 @@ class Commands(commands.Cog):
         gain_property = data.piece_property[inventory["room"]][objet][gain]
         print(gain_property)
 
-        if gain_property["effect"] == "energie": #fonctionne
+        if gain_property["effect"] == "energie":
             inventory["energie"] += gain_property["value"]
             energie_embed = discord.Embed(
                 title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
@@ -199,7 +199,7 @@ class Commands(commands.Cog):
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=energie_embed)
         
-        elif gain_property["effect"] == "points": #fonctionne
+        elif gain_property["effect"] == "points":
             nb_points = random.randint(5,20)
             inventory["points"] += nb_points
             points_embed = discord.Embed(
@@ -210,7 +210,7 @@ class Commands(commands.Cog):
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=points_embed)
 
-        elif gain_property["effect"] == "piece": #fonctionne
+        elif gain_property["effect"] == "piece":
             coin = random.choices(data.coin_list.copy(),data.coin_proba.copy())[0]
             inventory = await Cf.give(coin,"coin",inventory)
             coin_embed = discord.Embed(
@@ -269,6 +269,49 @@ class Commands(commands.Cog):
         await Cf.save_inv(inventory,ctx.author.id)
         return await ctx.send(embed=fuite_embed)
 
+
+    @commands.hybrid_command(name="amadouer")
+    async def amadouer(self,ctx:commands.context,energie:int):
+        """
+        Vous permet de tenter d'amadouer un yokai agressif
+        """
+        if not await Cf.have_started(ctx):
+            return
+        await Cf.energie_reset(ctx.author.id,ctx)
+        if not await Cf.aggressif_check(ctx.author.id,ctx,True):
+            return
+        inventory = await Cf.get_inv(ctx.author.id)
+
+        if inventory["energie"] < energie:
+            not_enough_embed = discord.Embed(
+                title="Vous n'avez pas suffisament d'énergie.",
+                description=f"Vous essayer d'utiliser {energie}, mais vous en avez {inventory["energie"]}",
+                color=discord.Color.red()
+            )
+            return await ctx.send(embed=not_enough_embed)
+
+        proba = 1
+        antiProba = 1 - proba
+        if random.choices([True,False],[proba,antiProba]):
+            inventory["energie"] -= energie
+            inventory = await Cf.give(inventory["yokai aggressif"]["Yokai"],"yokai",inventory,1)
+            succes_embed = discord.Embed(
+                title="Vous avez réussie à amadouer le yokai!",
+                description=f"Vous avez réussie à devenir ami avec {inventory["yokai aggressif"]["Yokai"]}\nVous venez d'utiliser {energie}, et il vous en reste {inventory["energie"]}",
+                color=discord.Color.green()
+            )
+            inventory["yokai aggressif"] = {"Activated":False,"Yokai":None}
+            await Cf.save_inv(inventory,ctx.author.id)
+            return await ctx.send(embed=succes_embed)
+        else:
+            inventory["energie"] -= energie
+            fail_embed = discord.Embed(
+                title="Vous n'avez pas réussie à amadouer le yokai!",
+                description=f"Vous n'avez pas réussie à devenir ami avec {inventory["yokai aggressif"]["Yokai"]}\nVous venez d'utiliser {energie}, et il vous en reste {inventory["energie"]}",
+                color=discord.Color.red()
+            )
+            await Cf.save_inv(inventory,ctx.author.id)
+            return await ctx.send(embed=fail_embed)
 
 
     @commands.hybrid_command(name="points")
@@ -361,11 +404,14 @@ class Commands(commands.Cog):
 
 
     @commands.hybrid_command(name="transformer")
-    async def transformer(self,ctx:commands.Context,amount:int):
-        if amount <= 0:
+    async def transformer(self,ctx:commands.Context,points:int):
+        """
+        Permet de transformer des points en énergie
+        """
+        if points <= 0:
             more_embed=discord.Embed(
                 title="Veuillez sélectionner un montant supérieur à 0.",
-                description=f"Le montant saisie ({amount}) n'est pas un montant valide.",
+                description=f"Le montant saisie ({points}) n'est pas un montant valide.",
                 color=discord.Color.red()
             )
             return await ctx.send(embed=more_embed)
@@ -375,20 +421,20 @@ class Commands(commands.Cog):
 
         inventory = await Cf.get_inv(ctx.author.id)
 
-        if inventory["points"] < amount:
+        if inventory["points"] < points:
             not_enough_embed = discord.Embed(
                 title="Vous n'avez pas assez de points.",
-                description=f"Il vous faut {amount}, et vous en avez {inventory["points"]}.",
+                description=f"Il vous faut {points}, et vous en avez {inventory["points"]}.",
                 color=discord.Color.red()
             )
             return await ctx.send(embed=not_enough_embed)
 
-        inventory["energie"] += amount
-        inventory["points"] -= amount
+        inventory["energie"] += points
+        inventory["points"] -= points
 
         success_embed = discord.Embed(
             title="Vous avez réussie!",
-            description=f"Vous avez convertit {amount} points en {amount} énergie.\nVous avez désormais {inventory["energie"]} énergie.",
+            description=f"Vous avez convertit {points} points en {points} énergie.\nVous avez désormais {inventory["energie"]} énergie.",
             color=discord.Color.green()
         )
         await Cf.save_inv(inventory,ctx.author.id)
