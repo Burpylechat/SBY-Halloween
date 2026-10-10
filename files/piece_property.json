@@ -32,7 +32,7 @@
         "proba": 25
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 12
@@ -70,7 +70,7 @@
         "proba": 20
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 20
@@ -108,7 +108,7 @@
         "proba": 10
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 20
@@ -146,7 +146,7 @@
         "proba": 20
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 10
@@ -184,7 +184,7 @@
         "proba": 16
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 16
@@ -224,7 +224,7 @@
         "proba": 10
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 10
@@ -262,7 +262,7 @@
         "proba": 30
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 10
@@ -300,7 +300,7 @@
         "proba": 0
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 15
@@ -338,7 +338,7 @@
         "proba": 30
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 10
@@ -376,7 +376,7 @@
         "proba": 20
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 20
@@ -416,7 +416,7 @@
         "proba": 5
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 5
@@ -454,7 +454,7 @@
         "proba": 10
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 10
@@ -492,7 +492,7 @@
         "proba": 30
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 10
@@ -530,7 +530,7 @@
         "proba": 15
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 10
@@ -568,10 +568,202 @@
         "proba": 10
       },
       "Un yokai aggressif": {
-        "description": "Le yokai {} apparue et vous attaque!",
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
         "effect": "yokai agressif",
         "value": null,
         "proba": 10
+      }
+    }
+  },
+  "Salle de bain": {
+    "Lavabo": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 20
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 0
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 20
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 20
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 20
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 20
+      }
+    },
+    "Miroir": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 45
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 10
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 15
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 30
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 0
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 0
+      }
+    },
+    "Baignoire": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 15
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 20
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 20
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 15
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 5
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 25
+      }
+    },
+    "Rideau": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 0
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 25
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 25
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 0
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 25
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 25
+      }
+    },
+    "Plante": {
+      "+5 énergie": {
+        "description": "Vous venez de gagner 5 d'énergie.",
+        "effect": "energie",
+        "value": 5,
+        "proba": 30
+      },
+      "-10 énergie": {
+        "description": "Vous venez de perdre 10 d'énergie.",
+        "effect": "energie",
+        "value": -10,
+        "proba": 0
+      },
+      "Entre 5 et 20 points": {
+        "description": "Vous venez de gagner {} points.",
+        "effect": "points",
+        "value": null,
+        "proba": 10
+      },
+      "Pièce": {
+        "description": "Vous venez de gagner une {}.",
+        "effect": "piece",
+        "value": null,
+        "proba": 15
+      },
+      "Un yokai passif": {
+        "description": "Vous venez de vous liez d'amitié avec le yokai {}.",
+        "effect": "yokai passif",
+        "value": null,
+        "proba": 45
+      },
+      "Un yokai aggressif": {
+        "description": "Le yokai {} apparue et vous attaque!\nFaites /amadouer pour essayer de devenir son ami et /fuite pour t'enfuir!\n-# Plus tu met d'énergie dans le /amadouer, plus tu as de chance de devenir son ami",
+        "effect": "yokai agressif",
+        "value": null,
+        "proba": 0
       }
     }
   }

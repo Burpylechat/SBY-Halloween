@@ -79,7 +79,11 @@ class Commands(commands.Cog):
         """
         Changer de pièce
         """
+        if not await Cf.have_started(ctx):
+            return
         await Cf.energie_reset(ctx.author.id,ctx)
+        if await Cf.aggressif_check(ctx.author.id,ctx):
+            return
         
         if piece not in data.pieces:
             not_piece_embed = discord.Embed(
@@ -151,6 +155,8 @@ class Commands(commands.Cog):
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
+        if await Cf.aggressif_check(ctx.author.id,ctx):
+            return
         inventory = await Cf.get_inv(ctx.author.id)
         if inventory["energie"] < 5:
             no_energie_embed = discord.Embed(
@@ -232,13 +238,36 @@ class Commands(commands.Cog):
                     description = gain_property["description"].format(yokai),
                     color = discord.Color.yellow()
                 )
+                inventory["yokai aggressif"] = {"Activated": True,"Yokai": yokai}
                 await Cf.save_inv(inventory,ctx.author.id)
-                """
-                TO-DO : Le fait de pourvoir dépenser de l'énergie pour l'attraper.
-                """
                 return await ctx.send(embed=yokai_embed)
-                
-            
+
+
+    @commands.hybrid_command(name="fuite")
+    async def fuite(self,ctx:commands.Context):
+        """
+        Vous permet de fuire un yokai aggressif.
+        """
+        if not await Cf.have_started(ctx):
+            return
+        await Cf.energie_reset(ctx.author.id,ctx)
+        if not await Cf.aggressif_check(ctx.author.id,ctx,True):
+            return
+        inventory = await Cf.get_inv(ctx.author.id)
+        last_room = inventory["room"]
+
+        new_room = random.choice(data.pieces.copy())
+        while new_room == inventory["room"]:
+            new_room = random.choice(data.pieces.copy())
+        inventory["room"] = new_room
+        inventory["yokai aggressif"] = {"Activated":False,"Yokai":None}
+        fuite_embed = discord.Embed(
+            title="Vous avez pris la fuite",
+            description=f"Vous êtes passé {await Cf.determinant(last_room.lower(),"de")} {await Cf.determinant(new_room.lower(),"au")} car vous avez pris la fuite!",
+            color=discord.Color.dark_gold()
+        )
+        await Cf.save_inv(inventory,ctx.author.id)
+        return await ctx.send(embed=fuite_embed)
 
 
 
@@ -331,6 +360,39 @@ class Commands(commands.Cog):
         return await ctx.send(embed=inv_embed)
 
 
+    @commands.hybrid_command(name="transformer")
+    async def transformer(self,ctx:commands.Context,amount:int):
+        if amount <= 0:
+            more_embed=discord.Embed(
+                title="Veuillez sélectionner un montant supérieur à 0.",
+                description=f"Le montant saisie ({amount}) n'est pas un montant valide.",
+                color=discord.Color.red()
+            )
+            return await ctx.send(embed=more_embed)
+        if not await Cf.have_started(ctx):
+            return
+        await Cf.energie_reset(ctx.author.id,ctx)
+
+        inventory = await Cf.get_inv(ctx.author.id)
+
+        if inventory["points"] < amount:
+            not_enough_embed = discord.Embed(
+                title="Vous n'avez pas assez de points.",
+                description=f"Il vous faut {amount}, et vous en avez {inventory["points"]}.",
+                color=discord.Color.red()
+            )
+            return await ctx.send(embed=not_enough_embed)
+
+        inventory["energie"] += amount
+        inventory["points"] -= amount
+
+        success_embed = discord.Embed(
+            title="Vous avez réussie!",
+            description=f"Vous avez convertit {amount} points en {amount} énergie.\nVous avez désormais {inventory["energie"]} énergie.",
+            color=discord.Color.green()
+        )
+        await Cf.save_inv(inventory,ctx.author.id)
+        return await ctx.send(embed=success_embed)
 
     
 
@@ -342,42 +404,42 @@ class Commands(commands.Cog):
         await self.piece(ctx,"Salon")
 
     @commands.hybrid_command(name="cuisine")
-    async def salon(self, ctx = commands.Context):
+    async def cuisine(self, ctx = commands.Context):
         """
         Vous permet de vous rendre dans la cuisine.
         """
         await self.piece(ctx,"Cuisine")
 
     @commands.hybrid_command(name="salle-de-bain")
-    async def salon(self, ctx = commands.Context):
+    async def salleDeBain(self, ctx = commands.Context):
         """
         Vous permet de vous rendre dans la salle de bain.
         """
         await self.piece(ctx,"Salle de bain")
 
     @commands.hybrid_command(name="bibliothèque")
-    async def salon(self, ctx = commands.Context):
+    async def bibliotheque(self, ctx = commands.Context):
         """
         Vous permet de vous rendre dans la bibliothèque.
         """
         await self.piece(ctx,"Bibliothèque")
 
     @commands.hybrid_command(name="chambre")
-    async def salon(self, ctx = commands.Context):
+    async def chambre(self, ctx = commands.Context):
         """
         Vous permet de vous rendre dans la chambre.
         """
         await self.piece(ctx,"Chambre")
 
     @commands.hybrid_command(name="galerie")
-    async def salon(self, ctx = commands.Context):
+    async def galerie(self, ctx = commands.Context):
         """
         Vous permet de vous rendre dans la galerie.
         """
         await self.piece(ctx,"Galerie")
 
     @commands.hybrid_command(name="grenier")
-    async def salon(self, ctx = commands.Context):
+    async def grenier(self, ctx = commands.Context):
         """
         Vous permet de vous rendre dans le grenier.
         """

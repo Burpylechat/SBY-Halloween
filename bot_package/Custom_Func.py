@@ -95,13 +95,23 @@ async def give(thing:str,where:str,inventory:dict,number:int=1):
         inventory[where][thing] = number
     return inventory
 
-async def determinant(word:str):
-    if word[0] in ["a", "e", "i", "o", "u", "y"]:
+async def determinant(word:str,det:str="le"):
+    if word[0] in ["a", "e", "i", "o", "u", "y"] and det == "le":
         return f"l'{word}"
     elif word in data.feminin.copy():
-        return f"la {word}"
+        if det == "le":
+            return f"la {word}"
+        elif det == "de":
+            return f"de la {word}"
+        else:
+            return f"à la {word}"
     else:
-        return f"le {word}"
+        if det == "le":
+            return f"le {word}"
+        elif det == "de":
+            return f"du {word}"
+        else:
+            return f"au {word}"
 
 async def have_started(ctx):
     inventory = await get_inv(ctx.author.id)
@@ -115,3 +125,24 @@ async def have_started(ctx):
         return False
     else:
         return True
+
+async def aggressif_check(user:int,ctx:commands.context,reverse:bool=False):
+    inventory = await get_inv(user)
+    if reverse:
+        if not inventory["yokai aggressif"]["Activated"]:
+            fail_embed = discord.Embed(
+                title="Il n'y a aucun yokai aggressif à fuire.",
+                color=discord.Color.red()
+            )
+            await ctx.send(embed=fail_embed)
+            return False
+        return True
+    if inventory["yokai aggressif"]["Activated"]:
+        fail_embed = discord.Embed(
+            title="Il y a un yokai aggressif qui vous attaque.",
+            description="Vous devez faire /fuire ou /amadouer avant de pouvoir éxécuter cette commande!",
+            color=discord.Color.red()
+        )
+        await ctx.send(embed=fail_embed)
+        return True
+    return False

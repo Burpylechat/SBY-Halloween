@@ -44,7 +44,11 @@ default_inventory = {
     "points" : 0,
     "yokai" : {},
     "coin" : {},
-    "room" : "main"
+    "room" : "main",
+    "yokai aggressif" : {
+        "Activated" : False,
+        "Yokai" : None
+    }
 }
 
 pieces = ["Salon", "Cuisine", "Chambre", "Salle de bain", "Bibliothèque", "Galerie", "Grenier"]
