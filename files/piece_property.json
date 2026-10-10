@@ -1,10 +1,10 @@
 {
   "Salon": {
     "Canape": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 10
       },
       "-10 énergie": {
@@ -39,10 +39,10 @@
       }
     },
     "Fauteuil": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 25
       },
       "-10 énergie": {
@@ -77,10 +77,10 @@
       }
     },
     "Cheminée": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 12
       },
       "-10 énergie": {
@@ -115,10 +115,10 @@
       }
     },
     "Tapis": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 10
       },
       "-10 énergie": {
@@ -153,10 +153,10 @@
       }
     },
     "Tableau": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 16
       },
       "-10 énergie": {
@@ -193,10 +193,10 @@
   },
   "Cuisine": {
     "Comptoir": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 20
       },
       "-10 énergie": {
@@ -231,10 +231,10 @@
       }
     },
     "Table": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 20
       },
       "-10 énergie": {
@@ -269,10 +269,10 @@
       }
     },
     "Couteau": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 0
       },
       "-10 énergie": {
@@ -307,10 +307,10 @@
       }
     },
     "Placard": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 0
       },
       "-10 énergie": {
@@ -345,10 +345,10 @@
       }
     },
     "Tabouret": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 30
       },
       "-10 énergie": {
@@ -385,10 +385,10 @@
   },
   "Chambre": {
     "Lit": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 80
       },
       "-10 énergie": {
@@ -423,10 +423,10 @@
       }
     },
     "Chevet": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 5
       },
       "-10 énergie": {
@@ -461,10 +461,10 @@
       }
     },
     "Armoire": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 5
       },
       "-10 énergie": {
@@ -499,10 +499,10 @@
       }
     },
     "Divan": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 45
       },
       "-10 énergie": {
@@ -537,10 +537,10 @@
       }
     },
     "Commode": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 0
       },
       "-10 énergie": {
@@ -577,10 +577,10 @@
   },
   "Salle de bain": {
     "Lavabo": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 20
       },
       "-10 énergie": {
@@ -615,10 +615,10 @@
       }
     },
     "Miroir": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 45
       },
       "-10 énergie": {
@@ -653,10 +653,10 @@
       }
     },
     "Baignoire": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 15
       },
       "-10 énergie": {
@@ -691,10 +691,10 @@
       }
     },
     "Rideau": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 0
       },
       "-10 énergie": {
@@ -729,10 +729,10 @@
       }
     },
     "Plante": {
-      "+5 énergie": {
-        "description": "Vous venez de gagner 5 d'énergie.",
+      "+10 énergie": {
+        "description": "Vous venez de gagner 10 d'énergie.",
         "effect": "energie",
-        "value": 5,
+        "value": 10,
         "proba": 30
       },
       "-10 énergie": {

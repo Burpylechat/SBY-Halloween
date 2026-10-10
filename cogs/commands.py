@@ -280,7 +280,24 @@ class Commands(commands.Cog):
         await Cf.energie_reset(ctx.author.id,ctx)
         if not await Cf.aggressif_check(ctx.author.id,ctx,True):
             return
+
+        if energie <= 0:
+            more_embed=discord.Embed(
+                title="Veuillez sélectionner un montant supérieur à 0.",
+                description=f"Le montant saisie ({energie}) n'est pas un montant valide.",
+                color=discord.Color.red()
+            )
+            return await ctx.send(embed=more_embed)
+        
         inventory = await Cf.get_inv(ctx.author.id)
+
+        if energie > 25:
+            too_many_embed = discord.Embed(
+                title="Vous avez mit trop d'énegie",
+                description=f"Vous avez mit {energie}, et le maximum est 25.",
+                color=discord.Color.red()
+            )
+            return await ctx.send(embed=too_many_embed)
 
         if inventory["energie"] < energie:
             not_enough_embed = discord.Embed(
@@ -290,7 +307,8 @@ class Commands(commands.Cog):
             )
             return await ctx.send(embed=not_enough_embed)
 
-        proba = 1
+        proba = (energie*4 - energie/3)/100
+        print(proba)
         antiProba = 1 - proba
         if random.choices([True,False],[proba,antiProba]):
             inventory["energie"] -= energie
@@ -303,11 +321,15 @@ class Commands(commands.Cog):
             inventory["yokai aggressif"] = {"Activated":False,"Yokai":None}
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=succes_embed)
-        else:
+        else:          
+            new_room = random.choice(data.pieces.copy())
+            while new_room == inventory["room"]:
+                new_room = random.choice(data.pieces.copy())
+            inventory["room"] = new_room
             inventory["energie"] -= energie
             fail_embed = discord.Embed(
                 title="Vous n'avez pas réussie à amadouer le yokai!",
-                description=f"Vous n'avez pas réussie à devenir ami avec {inventory["yokai aggressif"]["Yokai"]}\nVous venez d'utiliser {energie}, et il vous en reste {inventory["energie"]}",
+                description=f"Vous n'avez pas réussie à devenir ami avec {inventory["yokai aggressif"]["Yokai"]}\nVous avez donc fuis dans {await Cf.determinant(new_room.lower(),)}\nVous venez d'utiliser {energie}, et il vous en reste {inventory["energie"]}",
                 color=discord.Color.red()
             )
             await Cf.save_inv(inventory,ctx.author.id)
