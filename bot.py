@@ -155,7 +155,7 @@ class DiscordBot(commands.Bot):
         Setup the game status task of the bot.
         """
         statuses = ["/start"]
-        if random.choices([True, False], [0.95, 0.05]):
+        if random.choices([True, False], [0.95, 0.05])[0]:
             await self.change_presence(activity=discord.Game(random.choice(statuses)))
         else:
             await self.change_presence(activity=discord.Game("🔭")) # Hubble was here x)

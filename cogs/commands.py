@@ -119,9 +119,10 @@ class Commands(commands.Cog):
         await Cf.save_inv(inventory,ctx.author.id)
         succes_embed = discord.Embed(
             title="Vous avez changé de pièce.",
-            description=f"Vous êtes désormais dans {await Cf.determinant(piece.lower())}.\nIl vous reste {inventory["energie"]} énergies.",
+            description=f"Vous êtes désormais dans {await Cf.determinant(piece.lower())}.\nDescription de la pièce:\n{data.room_description[piece]}",
             color=discord.Color.green()
         )
+        succes_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
         succes_embed.set_image(url=data.images_piece[piece])
         return await ctx.send(embed=succes_embed)
     
@@ -196,6 +197,7 @@ class Commands(commands.Cog):
                 description = gain_property["description"],
                 color = discord.Color.green()
             )
+            energie_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=energie_embed)
         
@@ -207,6 +209,7 @@ class Commands(commands.Cog):
                 description = gain_property["description"].format(nb_points),
                 color = discord.Color.green()
             )
+            points_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=points_embed)
 
@@ -218,6 +221,7 @@ class Commands(commands.Cog):
                 description = gain_property["description"].format(coin),
                 color = discord.Color.green()
             )
+            coin_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=coin_embed)
 
@@ -230,6 +234,7 @@ class Commands(commands.Cog):
                     description = gain_property["description"].format(yokai),
                     color = discord.Color.green()
                 )
+                yokai_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
                 await Cf.save_inv(inventory,ctx.author.id)
                 return await ctx.send(embed=yokai_embed)
             else:
@@ -239,6 +244,7 @@ class Commands(commands.Cog):
                     color = discord.Color.yellow()
                 )
                 inventory["yokai aggressif"] = {"Activated": True,"Yokai": yokai}
+                yokai_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
                 await Cf.save_inv(inventory,ctx.author.id)
                 return await ctx.send(embed=yokai_embed)
 
