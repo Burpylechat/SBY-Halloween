@@ -118,11 +118,11 @@ class Commands(commands.Cog):
         inventory["energie"] -= 10
         await Cf.save_inv(inventory,ctx.author.id)
         succes_embed = discord.Embed(
-            title="Vous avez changé de pièce.",
-            description=f"Vous êtes désormais dans {await Cf.determinant(piece.lower())}.\nDescription de la pièce:\n{data.room_description[piece]}",
+            title=f"Vous vous rendez dans {await Cf.determinant(piece.lower())}.",
+            description=f"{data.room_description[piece]}",
             color=discord.Color.green()
         )
-        succes_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
+        succes_embed.set_footer("- 10 énergie")
         succes_embed.set_image(url=data.images_piece[piece])
         return await ctx.send(embed=succes_embed)
     
@@ -151,7 +151,7 @@ class Commands(commands.Cog):
     @app_commands.autocomplete(objet=object_autcomplete)
     async def objet(self,ctx:commands.Context,objet:str):
         """
-        Vous permet de fouillez un objet.
+        Fouiller un objet.
         """
         if not await Cf.have_started(ctx):
             return
@@ -193,11 +193,11 @@ class Commands(commands.Cog):
         if gain_property["effect"] == "energie":
             inventory["energie"] += gain_property["value"]
             energie_embed = discord.Embed(
-                title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
+                title = f"Vous fouillez {await Cf.determinant(objet.lower())}.",
                 description = gain_property["description"],
                 color = discord.Color.green()
             )
-            energie_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
+            energie_embed.set_footer("- 5 énergie.")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=energie_embed)
         
@@ -205,11 +205,11 @@ class Commands(commands.Cog):
             nb_points = random.randint(5,20)
             inventory["points"] += nb_points
             points_embed = discord.Embed(
-                title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
+                title = f"Vous fouillez {await Cf.determinant(objet.lower())}.",
                 description = gain_property["description"].format(nb_points),
                 color = discord.Color.green()
             )
-            points_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
+            points_embed.set_footer("- 5 énergie")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=points_embed)
 
@@ -217,11 +217,11 @@ class Commands(commands.Cog):
             coin = random.choices(data.coin_list.copy(),data.coin_proba.copy())[0]
             inventory = await Cf.give(coin,"coin",inventory)
             coin_embed = discord.Embed(
-                title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
+                title = f"Vous fouillez {await Cf.determinant(objet.lower())}.",
                 description = gain_property["description"].format(coin),
                 color = discord.Color.green()
             )
-            coin_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
+            coin_embed.set_footer("- 5 énergie.")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=coin_embed)
 
@@ -230,21 +230,21 @@ class Commands(commands.Cog):
             if gain_property["effect"] == "yokai passif":
                 inventory = await Cf.give(yokai,"yokai",inventory)
                 yokai_embed = discord.Embed(
-                    title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
+                    title = f"Vous fouillez {await Cf.determinant(objet.lower())}.",
                     description = gain_property["description"].format(yokai),
                     color = discord.Color.green()
                 )
-                yokai_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
+                yokai_embed.set_footer("- 5 énergie")
                 await Cf.save_inv(inventory,ctx.author.id)
                 return await ctx.send(embed=yokai_embed)
             else:
                 yokai_embed = discord.Embed(
-                    title = f"Vous avez fouillé {await Cf.determinant(objet.lower())}.",
+                    title = f"Vous fouillez {await Cf.determinant(objet.lower())}.",
                     description = gain_property["description"].format(yokai),
                     color = discord.Color.yellow()
                 )
                 inventory["yokai aggressif"] = {"Activated": True,"Yokai": yokai}
-                yokai_embed.set_footer(f"Il vous reste {inventory["energie"]} énergies.")
+                yokai_embed.set_footer("- 5 énergie")
                 await Cf.save_inv(inventory,ctx.author.id)
                 return await ctx.send(embed=yokai_embed)
 
@@ -252,7 +252,7 @@ class Commands(commands.Cog):
     @commands.hybrid_command(name="fuite")
     async def fuite(self,ctx:commands.Context):
         """
-        Vous permet de fuire un yokai aggressif.
+        Fuir un yokai aggressif.
         """
         if not await Cf.have_started(ctx):
             return
@@ -268,8 +268,8 @@ class Commands(commands.Cog):
         inventory["room"] = new_room
         inventory["yokai aggressif"] = {"Activated":False,"Yokai":None}
         fuite_embed = discord.Embed(
-            title="Vous avez pris la fuite",
-            description=f"Vous êtes passé {await Cf.determinant(last_room.lower(),"de")} {await Cf.determinant(new_room.lower(),"au")} car vous avez pris la fuite!",
+            title="Vous avez pris la fuite.",
+            description=f"Vous vous trouvez à présent {await Cf.determinant(new_room.lower(),"au")} car vous avez fuit !",
             color=discord.Color.dark_gold()
         )
         await Cf.save_inv(inventory,ctx.author.id)
@@ -279,7 +279,7 @@ class Commands(commands.Cog):
     @commands.hybrid_command(name="amadouer")
     async def amadouer(self,ctx:commands.context,energie:int):
         """
-        Vous permet de tenter d'amadouer un yokai agressif
+        Amadouer un yokai agressif
         """
         if not await Cf.have_started(ctx):
             return
@@ -289,8 +289,8 @@ class Commands(commands.Cog):
 
         if energie <= 0:
             more_embed=discord.Embed(
-                title="Veuillez sélectionner un montant supérieur à 0.",
-                description=f"Le montant saisie ({energie}) n'est pas un montant valide.",
+                title="Le montant saisi n'est pas valide.",
+                description="Veuillez saisir un montant supérieur à 0.",
                 color=discord.Color.red()
             )
             return await ctx.send(embed=more_embed)
@@ -299,8 +299,8 @@ class Commands(commands.Cog):
 
         if energie > 25:
             too_many_embed = discord.Embed(
-                title="Vous avez mit trop d'énegie",
-                description=f"Vous avez mit {energie}, et le maximum est 25.",
+                title="Le montant saisi n'est pas valide.",
+                description=f"Veuillez saisir un montant inférieur à 25. Vous voulez amadouer le yokai, pas le droguer !",
                 color=discord.Color.red()
             )
             return await ctx.send(embed=too_many_embed)
@@ -308,7 +308,7 @@ class Commands(commands.Cog):
         if inventory["energie"] < energie:
             not_enough_embed = discord.Embed(
                 title="Vous n'avez pas suffisament d'énergie.",
-                description=f"Vous essayer d'utiliser {energie}, mais vous en avez {inventory["energie"]}",
+                description=f"Il vous reste {inventory["energie"]}.",
                 color=discord.Color.red()
             )
             return await ctx.send(embed=not_enough_embed)
@@ -320,8 +320,8 @@ class Commands(commands.Cog):
             inventory["energie"] -= energie
             inventory = await Cf.give(inventory["yokai aggressif"]["Yokai"],"yokai",inventory,1)
             succes_embed = discord.Embed(
-                title="Vous avez réussie à amadouer le yokai!",
-                description=f"Vous avez réussie à devenir ami avec {inventory["yokai aggressif"]["Yokai"]}\nVous venez d'utiliser {energie}, et il vous en reste {inventory["energie"]}",
+                title="Vous avez réussi à amadouer le yokai !",
+                description=f"Félicitations ! Le yokai {inventory["yokai aggressif"]["Yokai"]} vient de devenir ami avec vous.",
                 color=discord.Color.green()
             )
             inventory["yokai aggressif"] = {"Activated":False,"Yokai":None}
@@ -334,8 +334,8 @@ class Commands(commands.Cog):
             inventory["room"] = new_room
             inventory["energie"] -= energie
             fail_embed = discord.Embed(
-                title="Vous n'avez pas réussie à amadouer le yokai!",
-                description=f"Vous n'avez pas réussie à devenir ami avec {inventory["yokai aggressif"]["Yokai"]}\nVous avez donc fuis dans {await Cf.determinant(new_room.lower(),)}\nVous venez d'utiliser {energie}, et il vous en reste {inventory["energie"]}",
+                title="Vous n'avez pas réussi à amadouer le yokai !",
+                description=f"Vous n'avez pas réussi à devenir ami avec {inventory["yokai aggressif"]["Yokai"]}.\nVous avez été repoussé vers {await Cf.determinant(new_room.lower(),)}.",
                 color=discord.Color.red()
             )
             await Cf.save_inv(inventory,ctx.author.id)
@@ -345,7 +345,7 @@ class Commands(commands.Cog):
     @commands.hybrid_command(name="points")
     async def points(self, ctx:commands.Context):
         """
-        Consulter votre nombre de points
+        Consulter votre solde de points
         """
         if not await Cf.have_started(ctx):
             return
@@ -353,7 +353,7 @@ class Commands(commands.Cog):
         inventory = await Cf.get_inv(ctx.author.id)
         points_embed = discord.Embed(
             title = f"Vous avez {inventory["points"]} points.",
-            description = "Faites /roue pour les dépenser!",
+            description = "Vous pouvez les dépenser à la roue ou les transformer en énergie !",
             color = discord.Color.green()
         )
         return await ctx.send(embed=points_embed)
@@ -363,14 +363,14 @@ class Commands(commands.Cog):
     @commands.hybrid_command(name="localisation")
     async def localisation(self, ctx:commands.Context):
         """
-        Consulter la pièce dans laquel vous êtes
+        Consulter votre position
         """
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         localisation_embed = discord.Embed(
-            title = f"Vous êtes dans {await Cf.determinant(inventory["room"].lower())}.",
+            title = f"Vous vous trouvez dans {await Cf.determinant(inventory["room"].lower())}.",
             description = "Faites /piece pour changer de pièce!",
             color = discord.Color.green()
         )
@@ -382,7 +382,7 @@ class Commands(commands.Cog):
     @commands.hybrid_command(name="inventaire")
     async def inventaire(self, ctx:commands.Context, user :discord.User = None):
         """
-        Permet de voire votre inventaire/celui de la personne précisé
+        Permet de consulter un inventaire
         """
         if user == None:
             user = ctx.author
@@ -391,14 +391,14 @@ class Commands(commands.Cog):
         if inv == {}:
             if user.id == ctx.author.id:
                 not_started_embed = discord.Embed(
-                    title = "Vous n'avez pas commencé l'évènement !",
+                    title = "Vous n'avez pas encore commencé l'évènement !",
                     description = "Faites /start pour commencer l'évènement.",
                     color = discord.Color.red()
                 )
                 return await ctx.send(embed=not_started_embed)
             else:
                 not_started_embed = discord.Embed(
-                    title=f"{user.name} n'as pas encore commencé l'évènement!",
+                    title=f"{user.name} n'a pas encore commencé l'évènement !",
                     color=discord.Color.red()
                 )
                 return await ctx.send(embed=not_started_embed)
@@ -407,12 +407,12 @@ class Commands(commands.Cog):
 
         if user.id == ctx.author.id:
             inv_embed = discord.Embed(
-                title="Votre inventaire:",
+                title="Votre inventaire :",
                 color=discord.Color.blurple()
             )
         else:
             inv_embed = discord.Embed(
-                title=f"Inventaire de {user.name}:",
+                title=f"Inventaire de {user.name} :",
                 color=discord.Color.blurple()
             )
 
@@ -434,12 +434,12 @@ class Commands(commands.Cog):
     @commands.hybrid_command(name="transformer")
     async def transformer(self,ctx:commands.Context,points:int):
         """
-        Permet de transformer des points en énergie
+        Transformer vos points en énergie
         """
         if points <= 0:
             more_embed=discord.Embed(
-                title="Veuillez sélectionner un montant supérieur à 0.",
-                description=f"Le montant saisie ({points}) n'est pas un montant valide.",
+                title="Ce montant n'est pas valide.",
+                description=f"Veuillez saisir un montant supérieur à 0.",
                 color=discord.Color.red()
             )
             return await ctx.send(embed=more_embed)
@@ -452,7 +452,7 @@ class Commands(commands.Cog):
         if inventory["points"] < points:
             not_enough_embed = discord.Embed(
                 title="Vous n'avez pas assez de points.",
-                description=f"Il vous faut {points}, et vous en avez {inventory["points"]}.",
+                description="Obtenez des points en fouillant les objets du manoir !",
                 color=discord.Color.red()
             )
             return await ctx.send(embed=not_enough_embed)
@@ -461,8 +461,8 @@ class Commands(commands.Cog):
         inventory["points"] -= points
 
         success_embed = discord.Embed(
-            title="Vous avez réussie!",
-            description=f"Vous avez convertit {points} points en {points} énergie.\nVous avez désormais {inventory["energie"]} énergie.",
+            title="Bravo !",
+            description=f"Vous avez converti vos points avec succès.\nVous possédez désormais {inventory["energie"]} énergie.",
             color=discord.Color.green()
         )
         await Cf.save_inv(inventory,ctx.author.id)
@@ -473,49 +473,49 @@ class Commands(commands.Cog):
     @commands.hybrid_command(name="salon")
     async def salon(self, ctx = commands.Context):
         """
-        Vous permet de vous rendre dans le salon.
+        Se rendre au salon.
         """
         await self.piece(ctx,"Salon")
 
     @commands.hybrid_command(name="cuisine")
     async def cuisine(self, ctx = commands.Context):
         """
-        Vous permet de vous rendre dans la cuisine.
+        Se rendre à la cuisine.
         """
         await self.piece(ctx,"Cuisine")
 
     @commands.hybrid_command(name="salle-de-bain")
     async def salleDeBain(self, ctx = commands.Context):
         """
-        Vous permet de vous rendre dans la salle de bain.
+        Se rendre à la salle de bain.
         """
         await self.piece(ctx,"Salle de bain")
 
     @commands.hybrid_command(name="bibliothèque")
     async def bibliotheque(self, ctx = commands.Context):
         """
-        Vous permet de vous rendre dans la bibliothèque.
+        Se rendre à la bibliothèque.
         """
         await self.piece(ctx,"Bibliothèque")
 
     @commands.hybrid_command(name="chambre")
     async def chambre(self, ctx = commands.Context):
         """
-        Vous permet de vous rendre dans la chambre.
+        Se rendre à la chambre.
         """
         await self.piece(ctx,"Chambre")
 
     @commands.hybrid_command(name="galerie")
     async def galerie(self, ctx = commands.Context):
         """
-        Vous permet de vous rendre dans la galerie.
+        Se rendre à la galerie.
         """
         await self.piece(ctx,"Galerie")
 
     @commands.hybrid_command(name="grenier")
     async def grenier(self, ctx = commands.Context):
         """
-        Vous permet de vous rendre dans le grenier.
+        Se rendre au grenier.
         """
         await self.piece(ctx,"Grenier")
 
