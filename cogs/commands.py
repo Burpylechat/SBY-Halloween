@@ -135,6 +135,9 @@ class Commands(commands.Cog):
         """
         if not await Cf.have_started(ctx):
             return
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         energi = inventory["energie"]
@@ -192,12 +195,19 @@ class Commands(commands.Cog):
 
         if gain_property["effect"] == "energie":
             inventory["energie"] += gain_property["value"]
-            energie_embed = discord.Embed(
-                title = f"Vous fouillez {await Cf.determinant(objet.lower())}.",
-                description = gain_property["description"],
-                color = discord.Color.green()
-            )
-            energie_embed.set_footer("- 5 énergie.")
+            if gain_property["value"] > 0:
+                energie_embed = discord.Embed(
+                    title = f"Vous fouillez {await Cf.determinant(objet.lower())}.",
+                    description = gain_property["description"],
+                    color = discord.Color.green()
+                )
+            else:
+                energie_embed = discord.Embed(
+                    title = f"Vous fouillez {await Cf.determinant(objet.lower())}.",
+                    description = gain_property["description"],
+                    color = discord.Color.red()
+                )
+            energie_embed.set_footer(text="- 5 énergie.")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=energie_embed)
         
@@ -209,7 +219,7 @@ class Commands(commands.Cog):
                 description = gain_property["description"].format(nb_points),
                 color = discord.Color.green()
             )
-            points_embed.set_footer("- 5 énergie")
+            points_embed.set_footer(text="- 5 énergie")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=points_embed)
 
@@ -221,7 +231,7 @@ class Commands(commands.Cog):
                 description = gain_property["description"].format(coin),
                 color = discord.Color.green()
             )
-            coin_embed.set_footer("- 5 énergie.")
+            coin_embed.set_footer(text="- 5 énergie.")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=coin_embed)
 
@@ -234,7 +244,7 @@ class Commands(commands.Cog):
                     description = gain_property["description"].format(yokai),
                     color = discord.Color.green()
                 )
-                yokai_embed.set_footer("- 5 énergie")
+                yokai_embed.set_footer(text="- 5 énergie")
                 await Cf.save_inv(inventory,ctx.author.id)
                 return await ctx.send(embed=yokai_embed)
             else:
@@ -244,7 +254,7 @@ class Commands(commands.Cog):
                     color = discord.Color.yellow()
                 )
                 inventory["yokai aggressif"] = {"Activated": True,"Yokai": yokai}
-                yokai_embed.set_footer("- 5 énergie")
+                yokai_embed.set_footer(text="- 5 énergie")
                 await Cf.save_inv(inventory,ctx.author.id)
                 return await ctx.send(embed=yokai_embed)
 
@@ -349,6 +359,9 @@ class Commands(commands.Cog):
         """
         if not await Cf.have_started(ctx):
             return
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         points_embed = discord.Embed(
@@ -367,6 +380,9 @@ class Commands(commands.Cog):
         """
         if not await Cf.have_started(ctx):
             return
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         localisation_embed = discord.Embed(
@@ -384,6 +400,9 @@ class Commands(commands.Cog):
         """
         Permet de consulter un inventaire
         """
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         if user == None:
             user = ctx.author
 
@@ -436,6 +455,9 @@ class Commands(commands.Cog):
         """
         Transformer vos points en énergie
         """
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         if points <= 0:
             more_embed=discord.Embed(
                 title="Ce montant n'est pas valide.",

@@ -1,3 +1,4 @@
 {
-    "team_members_id" : [Put admin team members id here]
+    "team_members_id" : [Put admin team members id here],
+    "commands_channel_id" : [Put channel where /points, /transformer, /energie and /inventaire can be executed]
 }

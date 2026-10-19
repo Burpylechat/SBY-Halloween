@@ -33,7 +33,45 @@ class Admin_command(commands.Cog):
         }
 
     
-    
+    @commands.hybrid_command(name="give")
+    @Check.is_in_dev_team()
+    async def give(self, ctx : commands.Context, input_id : discord.User,thing:str,where:Literal["coin","yokai"],number:int=1):
+        inventory = await Cf.get_inv(input_id.id)
+        try:
+            inventory[where][thing] += number
+        except KeyError:
+            inventory[where][thing] = number
+        embed = discord.Embed(
+            title = f"Vous avez donné un {number}X{thing} à {input_id.name}"
+        )
+        await Cf.save_inv(inventory,input_id.id)
+        return await ctx.send(embed=embed)
+
+    @commands.hybrid_command(name="remove")
+    @Check.is_in_dev_team()
+    async def remove(self, ctx : commands.Context, input_id : discord.User,thing:str,where:Literal["coin","yokai"],number:int=1):
+        inventory = await Cf.get_inv(input_id.id)
+        try:
+            inventory[where][thing] -= number
+            print(1)
+            if inventory[where][thing] <= 0:
+                print(2)
+                del inventory[where][thing]
+                print(inventory)
+        except KeyError:
+            fail = discord.Embed(
+                title=f"{input_id.name} n'as pas de {thing} de type {where}"
+            )
+            return await ctx.send(embed=fail)
+        embed = discord.Embed(
+            title = f"Vous avez retiré un {number}X{thing} à {input_id.name}"
+        )
+        print(3)
+        await Cf.save_inv(inventory,input_id.id)
+        print(4)
+        return await ctx.send(embed=embed)
+        
+
     
  
     @commands.hybrid_command(name="reset")

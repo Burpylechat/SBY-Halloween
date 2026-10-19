@@ -57,8 +57,9 @@ objets = []
 for room in piece_property:
     for objet in piece_property[room]:
         objets.append(objet)
-configuration = open_json("./files/bot-data.json")
-images_piece = configuration["Images"]
+bot_data = open_json("./files/bot-data.json")
+images_piece = bot_data["Images"]
+configuration = open_json("./configuration.json")
 room_description = open_json("./files/room_description.json")
 
 coin_list = ["Pièce rouge", "Pièce orange", "Pièce jaune", "Pièce verte", "Pièce bleue ciel", "Pièce bleue", "Pièce mauve", "Pièce rose", "Pièce démoniaque"]
