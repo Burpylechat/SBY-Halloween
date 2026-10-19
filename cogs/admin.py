@@ -37,6 +37,11 @@ class Admin_command(commands.Cog):
     @Check.is_in_dev_team()
     async def give(self, ctx : commands.Context, input_id : discord.User,thing:str,where:Literal["coin","yokai"],number:int=1):
         inventory = await Cf.get_inv(input_id.id)
+        if inventory == {}:
+            fail = discord.Embed(
+                title = f"{input_id.name} n'as pas commencé l'event"
+            )
+            return await ctx.send(embed=fail)
         try:
             inventory[where][thing] += number
         except KeyError:
@@ -51,6 +56,11 @@ class Admin_command(commands.Cog):
     @Check.is_in_dev_team()
     async def remove(self, ctx : commands.Context, input_id : discord.User,thing:str,where:Literal["coin","yokai"],number:int=1):
         inventory = await Cf.get_inv(input_id.id)
+        if inventory == {}:
+            fail = discord.Embed(
+                title = f"{input_id.name} n'as pas commencé l'event"
+            )
+            return await ctx.send(embed=fail)
         try:
             inventory[where][thing] -= number
             print(1)
