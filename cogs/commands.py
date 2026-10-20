@@ -61,7 +61,7 @@ class Commands(commands.Cog):
                 color = discord.Color.green()
             )
             started_embed.set_footer(text="Faites /pièce pour commencer.")
-            started_embed.set_image(url=data.images_piece["Manoir"])
+            #started_embed.set_image(url=data.images_piece["Manoir"])
             return await ctx.send(embed=started_embed)
         else:
             already_started_embed = discord.Embed(
@@ -114,6 +114,7 @@ class Commands(commands.Cog):
             )
             return await ctx.send(embed=no_energie_embed)
 
+
         inventory["room"] = piece
         inventory["energie"] -= 10
         await Cf.save_inv(inventory,ctx.author.id)
@@ -122,8 +123,8 @@ class Commands(commands.Cog):
             description=f"{data.room_description[piece]}",
             color=discord.Color.green()
         )
-        succes_embed.set_footer("- 10 énergie")
-        succes_embed.set_image(url=data.images_piece[piece])
+        succes_embed.set_footer(text="- 10 énergie")
+        #succes_embed.set_image(url=data.images_piece[piece])
         return await ctx.send(embed=succes_embed)
     
 
@@ -189,9 +190,7 @@ class Commands(commands.Cog):
             gain_proba.append(data.piece_property[inventory["room"]][objet][gain]["proba"])
 
         gain = random.choices(to_gain,gain_proba)[0]
-        print(gain)
         gain_property = data.piece_property[inventory["room"]][objet][gain]
-        print(gain_property)
 
         if gain_property["effect"] == "energie":
             inventory["energie"] += gain_property["value"]
@@ -324,7 +323,6 @@ class Commands(commands.Cog):
             return await ctx.send(embed=not_enough_embed)
 
         proba = (energie*4 - energie/3)/100
-        print(proba)
         antiProba = 1 - proba
         if random.choices([True,False],[proba,antiProba]):
             inventory["energie"] -= energie
@@ -390,7 +388,7 @@ class Commands(commands.Cog):
             description = "Faites /piece pour changer de pièce!",
             color = discord.Color.green()
         )
-        localisation_embed.set_image(url=data.images_piece[inventory["room"]])
+        #localisation_embed.set_image(url=data.images_piece[inventory["room"]])
         return await ctx.send(embed=localisation_embed)
 
 
