@@ -105,7 +105,7 @@ async def determinant(word:str,det:str="le"):
             return f"de la {word}"
         else:
             return f"à la {word}"
-    elif word in data.pluriel.copy():
+    elif word in data.pluriels.copy():
         if det == "le":
             return f"les {word}"
         elif det == "de":

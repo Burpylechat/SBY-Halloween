@@ -35,50 +35,70 @@ class Admin_command(commands.Cog):
     
     @commands.hybrid_command(name="give")
     @Check.is_in_dev_team()
-    async def give(self, ctx : commands.Context, input_id : discord.User,thing:str,where:Literal["coin","yokai"],number:int=1):
+    async def give(self, ctx : commands.Context, input_id : discord.User,where:Literal["coin","yokai","energie","points"],thing:str="",number:int=1):
         inventory = await Cf.get_inv(input_id.id)
         if inventory == {}:
             fail = discord.Embed(
                 title = f"{input_id.name} n'as pas commencé l'event"
             )
             return await ctx.send(embed=fail)
-        try:
-            inventory[where][thing] += number
-        except KeyError:
-            inventory[where][thing] = number
-        embed = discord.Embed(
-            title = f"Vous avez donné un {number}X{thing} à {input_id.name}"
-        )
+        if where == "coin" or where == "yokai":
+            if thing == "":
+                fail_embed = discord.Embed(
+                    title = "Veillez préciser un yokai/pièce!",
+                    color=discord.Color.red()
+                )
+                return await ctx.send(embed=fail_embed)
+            try:
+                inventory[where][thing] += number
+            except KeyError:
+                inventory[where][thing] = number
+            embed = discord.Embed(
+                title = f"Vous avez donné un {number}X{thing} à {input_id.name}"
+            )
+        else:
+            inventory[where] += number
+            embed = discord.Embed(
+                title = f"Vous avez donné {number} {where} à {input_id.name}.\nIl en as désormais {inventory[where]}."
+            )
         await Cf.save_inv(inventory,input_id.id)
         return await ctx.send(embed=embed)
 
     @commands.hybrid_command(name="remove")
     @Check.is_in_dev_team()
-    async def remove(self, ctx : commands.Context, input_id : discord.User,thing:str,where:Literal["coin","yokai"],number:int=1):
+    async def remove(self, ctx : commands.Context, input_id : discord.User,where:Literal["coin","yokai","energie","points"],thing:str="",number:int=1):
         inventory = await Cf.get_inv(input_id.id)
         if inventory == {}:
             fail = discord.Embed(
                 title = f"{input_id.name} n'as pas commencé l'event"
             )
             return await ctx.send(embed=fail)
-        try:
-            inventory[where][thing] -= number
-            print(1)
-            if inventory[where][thing] <= 0:
-                print(2)
-                del inventory[where][thing]
-                print(inventory)
-        except KeyError:
-            fail = discord.Embed(
-                title=f"{input_id.name} n'as pas de {thing} de type {where}"
+        if where == "coin" or where == "yokai":
+            if thing == "":
+                fail_embed = discord.Embed(
+                    title = "Veillez préciser un yokai/pièce!",
+                    color=discord.Color.red()
+                )
+                return await ctx.send(embed=fail_embed)
+            try:
+                inventory[where][thing] -= number
+                if inventory[where][thing] <= 0:
+                    del inventory[where][thing]
+                    print(inventory)
+            except KeyError:
+                fail = discord.Embed(
+                    title=f"{input_id.name} n'as pas de {thing} de type {where}"
+                )
+                return await ctx.send(embed=fail)
+            embed = discord.Embed(
+                title = f"Vous avez retiré un {number}X{thing} à {input_id.name}"
             )
-            return await ctx.send(embed=fail)
-        embed = discord.Embed(
-            title = f"Vous avez retiré un {number}X{thing} à {input_id.name}"
-        )
-        print(3)
+        else:
+            inventory[where] -= number
+            embed = discord.Embed(
+                title = f"Vous avez retiré {number} {where} à {input_id.name}.\nIl lui en reste {inventory[where]}."
+            )
         await Cf.save_inv(inventory,input_id.id)
-        print(4)
         return await ctx.send(embed=embed)
         
 

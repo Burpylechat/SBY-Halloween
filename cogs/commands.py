@@ -39,7 +39,10 @@ class Commands(commands.Cog):
         """
         Commencer l'évènement
         """
-
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+                    not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+                    return await ctx.send(not_command_salon_message,ephemeral=True)
+        
         inventory = await Cf.get_inv(ctx.author.id)
 
         started = False
@@ -79,6 +82,9 @@ class Commands(commands.Cog):
         """
         Changer de pièce
         """
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
@@ -136,9 +142,6 @@ class Commands(commands.Cog):
         """
         if not await Cf.have_started(ctx):
             return
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
-            return await ctx.send(not_command_salon_message,ephemeral=True)
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         energi = inventory["energie"]
@@ -157,6 +160,9 @@ class Commands(commands.Cog):
         """
         Fouiller un objet.
         """
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
@@ -191,7 +197,7 @@ class Commands(commands.Cog):
 
         gain = random.choices(to_gain,gain_proba)[0]
         gain_property = data.piece_property[inventory["room"]][objet][gain]
-
+        print(gain_property)
         if gain_property["effect"] == "energie":
             inventory["energie"] += gain_property["value"]
             if gain_property["value"] > 0:
@@ -206,6 +212,9 @@ class Commands(commands.Cog):
                     description = gain_property["description"],
                     color = discord.Color.red()
                 )
+                if inventory["energie"] < 0:
+                    inventory["energie"] = 0
+                    print(4)
             energie_embed.set_footer(text="- 5 énergie.")
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=energie_embed)
@@ -263,6 +272,9 @@ class Commands(commands.Cog):
         """
         Fuir un yokai aggressif.
         """
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
@@ -290,6 +302,9 @@ class Commands(commands.Cog):
         """
         Amadouer un yokai agressif
         """
+        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
@@ -357,9 +372,6 @@ class Commands(commands.Cog):
         """
         if not await Cf.have_started(ctx):
             return
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
-            return await ctx.send(not_command_salon_message,ephemeral=True)
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         points_embed = discord.Embed(
@@ -378,9 +390,6 @@ class Commands(commands.Cog):
         """
         if not await Cf.have_started(ctx):
             return
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
-            return await ctx.send(not_command_salon_message,ephemeral=True)
         await Cf.energie_reset(ctx.author.id,ctx)
         inventory = await Cf.get_inv(ctx.author.id)
         localisation_embed = discord.Embed(
@@ -398,9 +407,6 @@ class Commands(commands.Cog):
         """
         Permet de consulter un inventaire
         """
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
-            return await ctx.send(not_command_salon_message,ephemeral=True)
         if user == None:
             user = ctx.author
 
@@ -453,9 +459,6 @@ class Commands(commands.Cog):
         """
         Transformer vos points en énergie
         """
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
-            return await ctx.send(not_command_salon_message,ephemeral=True)
         if points <= 0:
             more_embed=discord.Embed(
                 title="Ce montant n'est pas valide.",
