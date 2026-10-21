@@ -96,9 +96,7 @@ async def give(thing:str,where:str,inventory:dict,number:int=1):
     return inventory
 
 async def determinant(word:str,det:str="le"):
-    if word[0] in ["a", "e", "i", "o", "u", "y"] and det == "le":
-        return f"l'{word}"
-    elif word in data.feminin.copy():
+    if word in data.feminin.copy():
         if det == "le":
             return f"la {word}"
         elif det == "de":
@@ -115,8 +113,12 @@ async def determinant(word:str,det:str="le"):
     elif word in data.nothing.copy():
         word = list(word)
         word[0] = word[0].upper()
-        word = str(word)
-        return word
+        complete_word = ""
+        for letter in word:
+            complete_word += letter
+        return complete_word
+    elif word[0] in ["a", "e", "i", "o", "u", "y"] and det == "le":
+            return f"l'{word}"
     else:
         if det == "le":
             return f"le {word}"

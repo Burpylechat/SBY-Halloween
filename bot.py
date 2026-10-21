@@ -6,7 +6,7 @@ Version: 6.3.0
 """
 Took from the real SBY :)
 """
-VERSION = 8.0
+VERSION = 1.0
 
 #import general stuff
 import json
