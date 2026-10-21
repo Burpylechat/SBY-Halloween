@@ -67,4 +67,6 @@ coin_proba = [12,12,12,12,12,12,12,12,4]
 
 yokai_room = open_json("./files/yokai_room.json")
 
-feminin = ["cuisine", "chambre", "salle de bain", "bibliothèque", "galerie", "cheminée", "table", "armoire", "commode"]    
+feminin = ["cuisine", "chambre", "salle de bain", "bibliothèque", "galerie", "cheminée", "table", "armoire", "commode", "baignoire", "plante", "chaise", "lampe", "bougie", "peluche", "statuette"]
+pluriels = ["chaussures", "bijoux"]
+nothing = ["jacques", "pauline", "marcel", "marie", "antoinette"]

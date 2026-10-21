@@ -293,7 +293,7 @@ class Commands(commands.Cog):
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
-        if not await Cf.aggressif_check(ctx.author.id,ctx,True):
+        if not await Cf.aggressif_check(ctx.author.id,ctx,True,True):
             return
 
         if energie <= 0:
@@ -324,7 +324,7 @@ class Commands(commands.Cog):
 
         proba = (energie*4 - energie/3)/100
         antiProba = 1 - proba
-        if random.choices([True,False],[proba,antiProba]):
+        if random.choices([True,False],[proba,antiProba])[0]:
             inventory["energie"] -= energie
             inventory = await Cf.give(inventory["yokai aggressif"]["Yokai"],"yokai",inventory,1)
             succes_embed = discord.Embed(

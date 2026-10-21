@@ -105,6 +105,18 @@ async def determinant(word:str,det:str="le"):
             return f"de la {word}"
         else:
             return f"à la {word}"
+    elif word in data.pluriel.copy():
+        if det == "le":
+            return f"les {word}"
+        elif det == "de":
+            return f"des {word}"
+        else:
+            return f"aux {word}"
+    elif word in data.nothing.copy():
+        word = list(word)
+        word[0] = word[0].upper()
+        word = str(word)
+        return word
     else:
         if det == "le":
             return f"le {word}"
@@ -126,14 +138,20 @@ async def have_started(ctx):
     else:
         return True
 
-async def aggressif_check(user:int,ctx:commands.context,reverse:bool=False):
+async def aggressif_check(user:int,ctx:commands.context,reverse:bool=False, amadouer:bool=False):
     inventory = await get_inv(user)
     if reverse:
         if not inventory["yokai aggressif"]["Activated"]:
-            fail_embed = discord.Embed(
-                title="Il n'y a aucun yokai aggressif à fuire.",
-                color=discord.Color.red()
-            )
+            if not amadouer:
+                fail_embed = discord.Embed(
+                    title="Il n'y a aucun yokai aggressif à fuire.",
+                    color=discord.Color.red()
+                )
+            else:
+                fail_embed = discord.Embed(
+                    title="Il n'y a aucun yokai aggressif à amadouer.",
+                    color=discord.Color.red()
+                )
             await ctx.send(embed=fail_embed)
             return False
         return True
