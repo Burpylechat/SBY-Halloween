@@ -59,7 +59,7 @@ class Admin_command(commands.Cog):
         else:
             inventory[where] += number
             embed = discord.Embed(
-                title = f"Vous avez donné {number} {where} à {input_id.name}.\nIl en as désormais {inventory[where]}."
+                title = f"Vous avez donné {number} {where} à {input_id.name}.\nIl en a désormais {inventory[where]}."
             )
         await Cf.save_inv(inventory,input_id.id)
         return await ctx.send(embed=embed)

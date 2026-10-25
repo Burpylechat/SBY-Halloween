@@ -39,9 +39,9 @@ class Commands(commands.Cog):
         """
         Commencer l'évènement
         """
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-                    not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
-                    return await ctx.send(not_command_salon_message,ephemeral=True)
+        if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
+            return await ctx.send(not_command_salon_message,ephemeral=True)
         
         inventory = await Cf.get_inv(ctx.author.id)
 
@@ -82,8 +82,8 @@ class Commands(commands.Cog):
         """
         Changer de pièce
         """
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+        if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
@@ -160,8 +160,8 @@ class Commands(commands.Cog):
         """
         Fouiller un objet.
         """
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+        if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
@@ -267,13 +267,13 @@ class Commands(commands.Cog):
                 return await ctx.send(embed=yokai_embed)
 
 
-    @commands.hybrid_command(name="fuite")
+    @commands.hybrid_command(name="fuir")
     async def fuite(self,ctx:commands.Context):
         """
         Fuir un yokai aggressif.
         """
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+        if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
@@ -290,7 +290,7 @@ class Commands(commands.Cog):
         inventory["yokai aggressif"] = {"Activated":False,"Yokai":None}
         fuite_embed = discord.Embed(
             title="Vous avez pris la fuite.",
-            description=f"Vous vous trouvez à présent {await Cf.determinant(new_room.lower(),"au")} car vous avez fuit !",
+            description=f"Vous avez fuit dans la direction {await Cf.determinant(new_room.lower(),"de")} !",
             color=discord.Color.dark_gold()
         )
         await Cf.save_inv(inventory,ctx.author.id)
@@ -302,8 +302,8 @@ class Commands(commands.Cog):
         """
         Amadouer un yokai agressif
         """
-        if ctx.guild.id != None and ctx.channel.id not in data.configuration["commands_channel_id"]:
-            not_command_salon_message = "Merci d'envoyer cette commande dans le #commande!"
+        if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
+            not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
@@ -361,6 +361,7 @@ class Commands(commands.Cog):
                 description=f"Vous n'avez pas réussi à devenir ami avec {inventory["yokai aggressif"]["Yokai"]}.\nVous avez été repoussé vers {await Cf.determinant(new_room.lower(),)}.",
                 color=discord.Color.red()
             )
+            inventory["yokai aggressif"] = {"Activated":False,"Yokai":None}
             await Cf.save_inv(inventory,ctx.author.id)
             return await ctx.send(embed=fail_embed)
 

@@ -81,12 +81,12 @@ async def energie_reset(user:int, ctx:commands.context):
         inventory["energie"] = 100
         inventory["last_reset"] = midnight
         await save_inv(inventory,user)
-        energie_reset_embed = discord.Embed(
+        """energie_reset_embed = discord.Embed(
             title = "Énergie réinitialisé",
             description = "Votre énergie quotidienne à été réinitialisé, elle est désormais à 100.",
             color=discord.Color.green()
         )
-        return await ctx.send(embed=energie_reset_embed)
+        return await ctx.send(embed=energie_reset_embed)"""
 
 async def give(thing:str,where:str,inventory:dict,number:int=1):
     try:
@@ -96,7 +96,16 @@ async def give(thing:str,where:str,inventory:dict,number:int=1):
     return inventory
 
 async def determinant(word:str,det:str="le"):
-    if word in data.feminin.copy():
+    if word in data.nothing.copy():
+        word = list(word)
+        word[0] = word[0].upper()
+        complete_word = ""
+        for letter in word:
+            complete_word += letter
+        return complete_word
+    elif word[0] in ["a", "e", "i", "o", "u", "y"] and det == "le":
+        return f"l'{word}"
+    elif word in data.feminin.copy():
         if det == "le":
             return f"la {word}"
         elif det == "de":
@@ -110,15 +119,6 @@ async def determinant(word:str,det:str="le"):
             return f"des {word}"
         else:
             return f"aux {word}"
-    elif word in data.nothing.copy():
-        word = list(word)
-        word[0] = word[0].upper()
-        complete_word = ""
-        for letter in word:
-            complete_word += letter
-        return complete_word
-    elif word[0] in ["a", "e", "i", "o", "u", "y"] and det == "le":
-            return f"l'{word}"
     else:
         if det == "le":
             return f"le {word}"
@@ -146,7 +146,7 @@ async def aggressif_check(user:int,ctx:commands.context,reverse:bool=False, amad
         if not inventory["yokai aggressif"]["Activated"]:
             if not amadouer:
                 fail_embed = discord.Embed(
-                    title="Il n'y a aucun yokai aggressif à fuire.",
+                    title="Il n'y a aucun yokai aggressif à fuir.",
                     color=discord.Color.red()
                 )
             else:
@@ -159,8 +159,8 @@ async def aggressif_check(user:int,ctx:commands.context,reverse:bool=False, amad
         return True
     if inventory["yokai aggressif"]["Activated"]:
         fail_embed = discord.Embed(
-            title="Il y a un yokai aggressif qui vous attaque.",
-            description="Vous devez faire /fuire ou /amadouer avant de pouvoir éxécuter cette commande!",
+            title="Vous êtes menacé par un yokai !",
+            description="Vous devez faire /fuir ou /amadouer avant de pouvoir exécuter cette commande !",
             color=discord.Color.red()
         )
         await ctx.send(embed=fail_embed)
