@@ -35,17 +35,17 @@ class Admin_command(commands.Cog):
     
     @commands.hybrid_command(name="give")
     @Check.is_in_dev_team()
-    async def give(self, ctx : commands.Context, input_id : discord.User,where:Literal["coin","yokai","energie","points"],thing:str="",number:int=1):
+    async def give(self, ctx : commands.Context, input_id : discord.User,where:Literal["coin","yokai","energie","points","objet"],thing:str="",number:int=1):
         inventory = await Cf.get_inv(input_id.id)
         if inventory == {}:
             fail = discord.Embed(
                 title = f"{input_id.name} n'as pas commencé l'event"
             )
             return await ctx.send(embed=fail)
-        if where == "coin" or where == "yokai":
+        if where == "coin" or where == "yokai" or where == "objet":
             if thing == "":
                 fail_embed = discord.Embed(
-                    title = "Veillez préciser un yokai/pièce!",
+                    title = "Veillez préciser un yokai/pièce/objet!",
                     color=discord.Color.red()
                 )
                 return await ctx.send(embed=fail_embed)
@@ -66,14 +66,14 @@ class Admin_command(commands.Cog):
 
     @commands.hybrid_command(name="remove")
     @Check.is_in_dev_team()
-    async def remove(self, ctx : commands.Context, input_id : discord.User,where:Literal["coin","yokai","energie","points"],thing:str="",number:int=1):
+    async def remove(self, ctx : commands.Context, input_id : discord.User,where:Literal["coin","yokai","energie","points","objet"],thing:str="",number:int=1):
         inventory = await Cf.get_inv(input_id.id)
         if inventory == {}:
             fail = discord.Embed(
                 title = f"{input_id.name} n'as pas commencé l'event"
             )
             return await ctx.send(embed=fail)
-        if where == "coin" or where == "yokai":
+        if where == "coin" or where == "yokai" or where == "objet":
             if thing == "":
                 fail_embed = discord.Embed(
                     title = "Veillez préciser un yokai/pièce!",

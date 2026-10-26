@@ -44,6 +44,7 @@ default_inventory = {
     "points" : 0,
     "yokai" : {},
     "coin" : {},
+    "objet" : {},
     "room" : "main",
     "yokai aggressif" : {
         "Activated" : False,

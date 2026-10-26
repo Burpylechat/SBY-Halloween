@@ -367,20 +367,36 @@ class Commands(commands.Cog):
 
 
     @commands.hybrid_command(name="points")
-    async def points(self, ctx:commands.Context):
+    async def points(self, ctx:commands.Context,user:discord.User=None):
         """
         Consulter votre solde de points
         """
-        if not await Cf.have_started(ctx):
-            return
-        await Cf.energie_reset(ctx.author.id,ctx)
-        inventory = await Cf.get_inv(ctx.author.id)
-        points_embed = discord.Embed(
-            title = f"Vous avez {inventory["points"]} points.",
-            description = "Vous pouvez les dépenser à la roue ou les transformer en énergie !",
-            color = discord.Color.green()
-        )
-        return await ctx.send(embed=points_embed)
+        if user == None:
+            user == ctx.author
+        inventory = await Cf.get_inv(user.id)
+        if user.id == ctx.author.id:
+            if not await Cf.have_started(ctx):
+                return
+        elif inventory == {}:
+            not_started_embed = discord.Embed(
+            title=f"{user.name} n'a pas encore commencé l'évènement !",
+            color=discord.Color.red()
+            )
+            return await ctx.send(embed=not_started_embed)
+        if user.id == ctx.author.id:
+            await Cf.energie_reset(ctx.author.id,ctx)
+            points_embed = discord.Embed(
+                title = f"Vous avez {inventory["points"]} points.",
+                description = "Vous pouvez les dépenser à la roue ou les transformer en énergie !",
+                color = discord.Color.green()
+            )
+            return await ctx.send(embed=points_embed)
+        else:
+            points_embed = discord.Embed(
+                title = f"{user.name} a {inventory["points"]} points.",
+                color = discord.Color.green()
+            )
+            return await ctx.send(embed=points_embed)
 
 
     
@@ -451,6 +467,12 @@ class Commands(commands.Cog):
             for coin in inv["coin"]:
                 field += f"{coin} `X{inv["coin"][coin]}`\n"
         inv_embed.add_field(name="**Pièces :**", value=field)
+
+        field = ""
+        if inv["objet"] != {}:
+            for objet in inv["objet"]:
+                field += f"{objet} `X{inv["objet"][objet]}`\n"
+        inv_embed.add_field(name="**Objets :**", value=field)
 
         return await ctx.send(embed=inv_embed)
 
