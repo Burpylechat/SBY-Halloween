@@ -372,7 +372,7 @@ class Commands(commands.Cog):
         Consulter votre solde de points
         """
         if user == None:
-            user == ctx.author
+            user = ctx.author
         inventory = await Cf.get_inv(user.id)
         if user.id == ctx.author.id:
             if not await Cf.have_started(ctx):
