@@ -39,6 +39,9 @@ class Commands(commands.Cog):
         """
         Commencer l'évènement
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
             not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
@@ -82,6 +85,9 @@ class Commands(commands.Cog):
         """
         Changer de pièce
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
             not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
@@ -140,6 +146,9 @@ class Commands(commands.Cog):
         """
         Consulter votre taux d'énergie
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
@@ -160,6 +169,9 @@ class Commands(commands.Cog):
         """
         Fouiller un objet.
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
             not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
@@ -186,9 +198,31 @@ class Commands(commands.Cog):
             for objett in data.piece_property[inventory["room"]]:
                 not_object_in_room_embed.add_field(name=objett,value="")
             return await ctx.send(embed=not_object_in_room_embed)
-
+		
+        try:
+            inventory["fouille"]
+        except:
+            inventory["fouille"] = {}
+        
+        try:
+            amount = inventory["fouille"][objet]
+            if amount >= 3:
+                more_than_tree_embed = discord.Embed(
+                    title="Vous ave déjà fouillé trois fois cet objet.",
+                    description="Revenez demain pour pouvoir de nouveau le fouiller.",
+                    color=discord.Color.red()
+                )
+                return await ctx.send(embed=more_than_tree_embed)
+        except:
+            pass
+        
         inventory["energie"] -= 5
-
+        
+        try:
+            inventory["fouille"][objet] += 1
+        except:
+            inventory["fouille"][objet] = 1
+            
         to_gain = []
         gain_proba = []
         for gain in data.piece_property[inventory["room"]][objet]:
@@ -272,6 +306,9 @@ class Commands(commands.Cog):
         """
         Fuir un yokai aggressif.
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
             not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
@@ -302,6 +339,9 @@ class Commands(commands.Cog):
         """
         Amadouer un yokai agressif
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if ctx.guild.id != None and ctx.channel.id in data.configuration["commands_channel_id"]:
             not_command_salon_message = "Merci de ne pas éxécuter cette commande dans le #commande!"
             return await ctx.send(not_command_salon_message,ephemeral=True)
@@ -371,6 +411,9 @@ class Commands(commands.Cog):
         """
         Consulter votre solde de points
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if user == None:
             user = ctx.author
         inventory = await Cf.get_inv(user.id)
@@ -405,6 +448,9 @@ class Commands(commands.Cog):
         """
         Consulter votre position
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if not await Cf.have_started(ctx):
             return
         await Cf.energie_reset(ctx.author.id,ctx)
@@ -424,6 +470,9 @@ class Commands(commands.Cog):
         """
         Permet de consulter un inventaire
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if user == None:
             user = ctx.author
 
@@ -482,6 +531,9 @@ class Commands(commands.Cog):
         """
         Transformer vos points en énergie
         """
+        if ctx.guild.id != 1528737078978940989:
+            not_event_guild_embed = "Merci de faire l'évènement sur le serveur discord prévu pour!"
+            return await ctx.send(not_event_guild_embed,ephemeral=True)
         if points <= 0:
             more_embed=discord.Embed(
                 title="Ce montant n'est pas valide.",
