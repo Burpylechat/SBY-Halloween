@@ -80,7 +80,10 @@ async def energie_reset(user:int, ctx:commands.context):
     if inventory["last_reset"] < midnight:
         inventory["energie"] = 100
         inventory["last_reset"] = midnight
-        del inventory["fouille"]
+        try:
+            del inventory["fouille"]
+        except:
+            pass
         await save_inv(inventory,user)
         """energie_reset_embed = discord.Embed(
             title = "Énergie réinitialisé",
